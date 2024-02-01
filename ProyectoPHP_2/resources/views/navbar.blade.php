@@ -40,7 +40,7 @@
                     <a class="nav-link text-white" href="{{ route('dashboard') }}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Clientes</a>
+                    <a class="nav-link text-white" href="{{ route('clientes.index')}}">Clientes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="">Operarios</a>

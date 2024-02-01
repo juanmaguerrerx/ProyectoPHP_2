@@ -5,7 +5,6 @@
 
 <header>@include('navbar')</header>
 @section('content')
-
     @extends('../tabla')
     @section('nombre_tabla')Clientes @endsection
 @section('thead')
@@ -33,7 +32,7 @@
         </tr>
     @endforeach
 @endsection
-
-<a href="{{ route('clientes.create') }}"><button class="btn btn-outline-secondary btn-lg fixed-button text-white border-white">Crear
+<a href="{{ route('clientes.create') }}"><button
+        class="btn btn-outline-secondary btn-lg fixed-button text-white border-white">Crear
         Cliente</button></a>
 @endsection
