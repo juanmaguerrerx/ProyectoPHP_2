@@ -1,15 +1,27 @@
 @extends('../layout')
 @section('titulo', 'Dar de Alta Cliente')
-
+@section('style')
+<style>
+.fm{
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.form-control{
+    background-color:rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px); 
+    color: white;
+}
+</style>  
+@endsection
 @include('navbar')
 @section('content')
-    <div class="form-container">
-        <h2 class="text-center mb-4">Datos del Formulario</h2>
+    <div class="form-container text-white fm">
+        <h2 class="text-center mb-4">Datos del Cliente</h2>
         <form>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cif" class="form-label">CIF:</label>
-                    <input type="text" class="form-control" id="cif" name="cif">
+                    <input type="text" class="form-control blu" id="cif" name="cif">
                 </div>
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre:</label>

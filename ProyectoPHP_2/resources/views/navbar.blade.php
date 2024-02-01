@@ -31,8 +31,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            No se caen S.L
+        <a class="navbar-brand" href="{{route('dashboard')}}">
+            No se Caen S.L
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
@@ -43,7 +43,7 @@
                     <a class="nav-link text-white" href="{{ route('clientes.index')}}">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Operarios</a>
+                    <a class="nav-link text-white" href="{{ route('operarios.index')}}">Operarios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="">Tareas</a>

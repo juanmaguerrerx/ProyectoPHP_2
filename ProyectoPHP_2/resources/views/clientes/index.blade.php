@@ -8,7 +8,7 @@
     @extends('../tabla')
     @section('nombre_tabla')Clientes @endsection
 @section('thead')
-    <th>CIF</th>
+    <th class="text-purple-800">CIF</th>
     <th>Nombre</th>
     <th>Teléfono</th>
     <th>Correo</th>
