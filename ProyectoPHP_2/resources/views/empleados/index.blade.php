@@ -1,51 +1,6 @@
 @extends('../layout')
 @section('titulo', 'Operarios')
-@section('style')
-    <style>
-        .fixed-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-        }
-        
-        .table-container {
-            max-width: 1000px;
-            margin: auto;
-            margin-top: 50px;
-        }
 
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .table th,
-        .table td {
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .table th {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .table tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
-        }
-
-        .table-hover tbody tr:hover {
-            background-color: #e0e0e0;
-        }
-
-        .bb {
-            margin-bottom: 2.5px;
-        }
-    </style>
-@endsection
 @include('navbar')
 @section('content')
     @extends('tabla')
@@ -77,6 +32,6 @@
         </tr>
     @endforeach
 @endsection
-<a href=""><button class="btn btn-outline-primary btn-lg fixed-button">Crear Empleado</button></a>
+<a href=""><button class="btn btn-outline-secondary btn-lg fixed-button">Crear Empleado</button></a>
 
 @endsection

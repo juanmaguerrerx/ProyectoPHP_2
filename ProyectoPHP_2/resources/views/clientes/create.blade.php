@@ -1,26 +1,6 @@
 @extends('../layout')
 @section('titulo', 'Dar de Alta Cliente')
-@section('style')
-    <style>
-        body {
-            background-color: #787878;
-        }
 
-        .form-container {
-            max-width: 400px;
-            margin: auto;
-            margin-top: 50px;
-            background-color: rgba(255, 255, 255, 0.227);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-    </style>
-@endsection
 @include('navbar')
 @section('content')
     <div class="form-container">
@@ -76,7 +56,7 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {

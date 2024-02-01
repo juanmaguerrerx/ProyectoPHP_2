@@ -1,0 +1,118 @@
+body{
+    background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(15px);
+}
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #ccc;
+    background-color: rgba(28, 28, 28, 0.6);
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card-title {
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+    color: white;
+    letter-spacing: 3px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.b{
+    padding-top: 5px;
+    color: rgb(0, 0, 0);
+}
+
+
+.fixed-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.table-container {
+    max-width: 900px;
+    margin: auto;
+    margin-top: 50px;
+
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #0000004b;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+thead,tbody, tr{
+    border-radius: 15px;
+
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.table th {
+    background-color: #00000048;
+    color: #fff;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #0000004f;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #1010104b;
+    color: white;
+}
+
+.bb {
+    margin-bottom: 2px;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.227);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}

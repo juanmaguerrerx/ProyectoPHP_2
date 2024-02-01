@@ -1,9 +1,15 @@
 <style>
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
     .navbar-brand {
         font-size: 24px;
         letter-spacing: 3px;
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         margin-right: 0px;
+        margin-left:5px;
     }
 
     .navbar-nav {
@@ -17,46 +23,42 @@
         margin-right: 55px;
     }
 
-    .cs{
+    .cs {
         position: absolute;
         right: 0px;
-}
+    }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             No se caen S.L
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('dashboard')}}">Inicio</a>
+                    <a class="nav-link text-white" href="{{ route('dashboard') }}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Clientes</a>
+                    <a class="nav-link text-white" href="">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Operarios</a>
+                    <a class="nav-link text-white" href="">Operarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Tareas</a>
+                    <a class="nav-link text-white" href="">Tareas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Incidencias</a>
+                    <a class="nav-link text-white" href="">Incidencias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Facturas</a>
+                    <a class="nav-link text-white" href="">Facturas</a>
                 </li>
             </ul>
 
             <ul class="navbar-nav cs">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><button class="btn btn-outline-danger">Cerrar Sesión</button></a>
+                    <a class="nav-link" href="#"><button class="btn btn-outline-warning">Cerrar Sesión</button></a>
                 </li>
             </ul>
 

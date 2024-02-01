@@ -1,6 +1,4 @@
-<style>
-    
-</style>
+
 <div class="main">
     <h1 class="text-center">@yield('nombre_tabla')</h1>
 
