@@ -12,7 +12,7 @@
     <style>
         body {
             background: rgb(0, 0, 0);
-            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 1%, rgba(203, 176, 20, 1) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 1%, rgb(177, 153, 19) 100%);
             background-size: cover;
             background-repeat: no-repeat;
         }

@@ -34,6 +34,6 @@
     @endforeach
 @endsection
 
-<a href="{{ route('clientes.create') }}"><button class="btn btn-outline-secondary btn-lg fixed-button">Crear
+<a href="{{ route('clientes.create') }}"><button class="btn btn-outline-secondary btn-lg fixed-button text-white border-white">Crear
         Cliente</button></a>
 @endsection

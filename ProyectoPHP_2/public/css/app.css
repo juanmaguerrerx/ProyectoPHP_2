@@ -1,9 +1,4 @@
-body{
-    background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
-    background-size: cover;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(15px);
-}
+
 .card-container {
     display: flex;
     justify-content: center;
