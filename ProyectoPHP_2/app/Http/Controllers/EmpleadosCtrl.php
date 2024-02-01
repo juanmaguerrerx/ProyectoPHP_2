@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Operarios;
+use App\Models\Empleados;
 use Illuminate\Http\Request;
 
-class OperariossCtrl extends Controller
+class EmpleadosCtrl extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $empleados = Empleados::all();
+        // dd($empleados);
+        return view('empleados.index', compact('empleados'));
     }
 
     /**
@@ -34,7 +36,7 @@ class OperariossCtrl extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Operarios $operarios)
+    public function show(Empleados $empleados)
     {
         //
     }
@@ -42,7 +44,7 @@ class OperariossCtrl extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Operarios $operarios)
+    public function edit(Empleados $empleados)
     {
         //
     }
@@ -50,7 +52,7 @@ class OperariossCtrl extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Operarios $operarios)
+    public function update(Request $request, Empleados $empleados)
     {
         //
     }
@@ -58,7 +60,7 @@ class OperariossCtrl extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Operarios $operarios)
+    public function destroy(Empleados $empleados)
     {
         //
     }

@@ -1,9 +1,9 @@
 <style>
     .navbar-brand {
         font-size: 24px;
-        /* Tamaño del texto del nombre/logo */
-        font-weight: bold;
-        /* Hacer el texto del nombre/logo en negrita */
+        letter-spacing: 3px;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-right: 0px;
     }
 
     .navbar-nav {
@@ -14,9 +14,13 @@
 
     .nav-link {
         font-size: 18px;
-        margin-right: 50px;
-        /* Tamaño del texto de los enlaces */
+        margin-right: 55px;
     }
+
+    .cs{
+        position: absolute;
+        right: 0px;
+}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,18 +35,31 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="{{route('dashboard')}}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
+                    <a class="nav-link" href="">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
+                    <a class="nav-link" href="">Operarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="">Tareas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Incidencias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Facturas</a>
                 </li>
             </ul>
+
+            <ul class="navbar-nav cs">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><button class="btn btn-outline-danger">Cerrar Sesión</button></a>
+                </li>
+            </ul>
+
         </div>
     </div>
 </nav>

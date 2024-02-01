@@ -11,30 +11,28 @@ CREATE TABLE `cuotas` (
 );
 
 CREATE TABLE `clientes` (
-    `cif` VARCHAR(255) NOT NULL PRIMARY KEY, `nombre` VARCHAR(255) NOT NULL, `telefono` BIGINT NOT NULL, `correo` VARCHAR(255) NOT NULL, `cuenta_corriente` VARCHAR(255) NOT NULL, `pais` INT NOT NULL, `moneda` VARCHAR(255) NOT NULL, `importe_mensual` BIGINT NULL, CONSTRAINT `clientes_pais_foreign` FOREIGN KEY (`pais`) REFERENCES `paises` (`id`)
+    `cif` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `nombre` VARCHAR(255) NOT NULL,
+    `telefono` BIGINT NOT NULL,
+    `correo` VARCHAR(255) NOT NULL,
+    `cuenta_corriente` VARCHAR(255) NOT NULL,
+    `pais_id` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+    `importe_mensual` BIGINT NULL,
+    FOREIGN KEY (`pais_id`) REFERENCES `paises` (`id`)
 );
+
 
 -- DATOS ALEATORIOS
 
-INSERT INTO
-    `clientes` (
-        `cif`, `nombre`, `telefono`, `correo`, `cuenta_corriente`, `pais`, `moneda`, `importe_mensual`
-    )
-VALUES (
-        'CIF1', 'Cliente1', 123456789, 'cliente1@example.com', 'ES12345678901234567890', 73, 'EUR', 1000
-    ),
-    (
-        'CIF2', 'Cliente2', 987654321, 'cliente2@example.com', 'ES09876543210987654321', 112, 'USD', 1500
-    ),
-    (
-        'CIF3', 'Cliente3', 456789012, 'cliente3@example.com', 'ES34567890123456789012', 155, 'GBP', 1200
-    ),
-    (
-        'CIF4', 'Cliente4', 789012345, 'cliente4@example.com', 'ES56789012345678901234', 20, 'JPY', 2000
-    ),
-    (
-        'CIF5', 'Cliente5', 234567890, 'cliente5@example.com', 'ES67890123456789012345', 56, 'CAD', 1800
-    );
+INSERT INTO `clientes` (`cif`, `nombre`, `telefono`, `correo`, `cuenta_corriente`, `pais_id`, `importe_mensual`)
+VALUES 
+('ABC123', 'Cliente1', '123456789', 'cliente1@email.com', 'ES12345678901234567890', '004', 1500.00),
+('DEF456', 'Cliente2', '987654321', 'cliente2@email.com', 'GB12345678901234567890', '008', 2000.00),
+('GHI789', 'Cliente3', '456789012', 'cliente3@email.com', 'FR12345678901234567890', '010', 1800.00),
+-- Agrega más filas según sea necesario
+('JKL012', 'ClienteN', '789012345', 'clienteN@email.com', 'DE12345678901234567890', '108', 2200.00);
+
+
 
 INSERT INTO `empleados` 
     (`dni`, `nombre_empleado`, `correo`, `telefono`, `direccion`, `fecha_alta`, `admin`)
@@ -49,9 +47,8 @@ VALUES
 -- Insertar 5 cuotas aleatorias
 INSERT INTO `cuotas` (`cif_cliente`, `concepto`, `fecha_emision`, `importe`, `pagada`, `fecha_pago`, `notas`)
 VALUES
-    ('CIF123456', 'Cuota Mensual', '2024-01-01', 500.00, 0, NULL, 'Primera cuota'),
-    ('CIF987654', 'Cuota Anual', '2024-02-15', 1200.00, 0, NULL, 'Cuota anual de mantenimiento'),
-    ('CIF789012', 'Cuota Trimestral', '2024-03-10', 800.00, 1, '2024-03-20', 'Cuota trimestral pagada'),
-    ('CIF345678', 'Cuota Mensual', '2024-04-05', 600.00, 0, NULL, 'Cuota mensual pendiente'),
-    ('CIF123789', 'Cuota Anual', '2024-05-20', 1500.00, 0, NULL, 'Cuota anual de servicios');
+    ('ABC123', 'Cuota Mensual', '2024-01-01', 500.00, 0, NULL, 'Primera cuota'),
+    ('DEF456', 'Cuota Anual', '2024-02-15', 1200.00, 0, NULL, 'Cuota anual de mantenimiento'),
+    ('GHI789', 'Cuota Trimestral', '2024-03-10', 800.00, 1, '2024-03-20', 'Cuota trimestral pagada'),
+    ('JKL012', 'Cuota Mensual', '2024-04-05', 600.00, 0, NULL, 'Cuota mensual pendiente');
 

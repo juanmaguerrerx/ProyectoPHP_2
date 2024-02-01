@@ -12,7 +12,7 @@ class TareasCtrl extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

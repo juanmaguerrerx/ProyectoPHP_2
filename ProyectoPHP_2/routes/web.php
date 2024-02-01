@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ClientesCtrl;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardCtrl;
+use App\Http\Controllers\EmpleadosCtrl;
+use App\Http\Controllers\OperariosCtrl;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +21,10 @@ use App\Http\Controllers\DashboardCtrl;
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', [DashboardCtrl::class, 'mostrarDash'])->name('mostrarDash');
+Route::get('/dashboard', [DashboardCtrl::class, 'mostrarDash'])->name('dashboard');
+
+Route::get('/clientes', [ClientesCtrl::class, 'index'])->name('clientes.index');
+
+Route::get('/clientes-create',[ClientesCtrl::class, 'create'])->name('clientes.create');
+
+Route::get('/operarios',[EmpleadosCtrl::class,'index'])->name('operarios.index');

@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+@extends('layout')
+@section('titulo', 'Dashboard')
+@section('style')
     <style>
-       .card-container {
+        body{
+            background-image: url(./images/photo-1563340012-9a46fb6a29ff.avif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(6px);
+        }
+        .card-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,9 +18,9 @@
         .card {
             width: 200px;
             height: 200px;
-            border: 2px solid #ccc;
-            background-color: white;
-            box-shadow: 2px 2px 5px #888888;
+            border: 5px solid #ccc;
+            background-color: rgba(28, 28, 28, 0.6);
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
             margin: 20px;
             transition: transform 0.3s ease-in-out;
             display: flex;
@@ -36,9 +35,10 @@
 
         .card-title {
             font-size: 20px;
-            font-weight: bold;
             margin: 10px;
-            text-align: center; /* Centrar horizontalmente */
+            text-align: center;
+            color: white;
+            letter-spacing: 3px;
         }
 
         .card-link {
@@ -51,45 +51,53 @@
             height: 100%;
             width: 100%;
         }
+        .b{
+            padding-top: 5px;
+            color: rgb(0, 0, 0);
+        }
+        
     </style>
-    <title>Dashboard</title>
-</head>
+@endsection
 
-<body>
-    <header>
-        @include('navbar')
-    </header>
+<header>@include('navbar')</header>
+@section('content')
+    <div class="text-center b">
+        <h1>Hola, Juanma</h1> {{-- nombre del usuario --}}
+        <h4>¿A dónde vamos?</h4>
+    </div>
+    <div class="card-container">
+        <div class="card cl">
+            <a href="{{route('clientes.index')}}" class="card-link">
+            <div class="card-title">Clientes</div>
+            </a>
+        </div>
 
-    <div class="main">
-        <div class="card-container">
-            <div class="card">
-                <div class="card-title">Enlace 1</div>
-                <a href="https://www.ejemplo1.com" class="card-link"></a>
-            </div>
-    
-            <div class="card">
-                <div class="card-title">Enlace 2</div>
-                <a href="https://www.ejemplo2.com" class="card-link"></a>
-            </div>
+        <div class="card">
+            <a href="{{route('operarios.index')}}" class="card-link">
+            <div class="card-title">Operarios</div>
+            </a>
         </div>
-    
-        <div class="card-container">
-            <div class="card">
-                <div class="card-title">Enlace 3</div>
-                <a href="https://www.ejemplo3.com" class="card-link"></a>
-            </div>
-    
-            <div class="card">
-                <div class="card-title">Enlace 4</div>
-                <a href="https://www.ejemplo4.com" class="card-link"></a>
-            </div>
-        </div>
-    
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
+    <div class="card-container">
+        <div class="card in">
+            <a href="" class="card-link">
+            <div class="card-title">Incidencias</div>
+            </a>
+        </div>
 
-</html>
+        <div class="card ta">
+            <a href="" class="card-link">
+            <div class="card-title">Tareas</div>
+            </a>
+        </div>
+
+        <div class="card fa">
+            <a href="" class="card-link">
+            <div class="card-title">Facturas/Cuotas</div>
+            </a>
+        </div>
+
+
+    </div>
+@endsection

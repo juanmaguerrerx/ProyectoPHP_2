@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use Illuminate\Http\Request;
+use App\Models\Paises;
 
 class ClientesCtrl extends Controller
 {
@@ -12,7 +13,9 @@ class ClientesCtrl extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Clientes::all();
+        return view('clientes.index', compact('clientes'));
+
     }
 
     /**
@@ -20,7 +23,10 @@ class ClientesCtrl extends Controller
      */
     public function create()
     {
-        //
+        $paisesMod = new Paises;
+        $paises = $paisesMod->getPaises();
+
+        return view('clientes.create', compact('paises'));
     }
 
     /**
@@ -28,7 +34,7 @@ class ClientesCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
