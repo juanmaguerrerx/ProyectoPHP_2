@@ -2,17 +2,6 @@
 @section('titulo', 'Dar de Alta Cliente')
 @section('style')
     <style>
-        .fm {
-            border-right: 1px solid rgba(255, 255, 255, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .form-control {
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(5px);
-            color: white;
-        }
-
         .custom-select {
             width: 360px;
         }
