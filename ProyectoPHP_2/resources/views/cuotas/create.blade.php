@@ -81,12 +81,12 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#pais').change(function() {
+            $('#').change(function() {
                 var selectedMoneda = $(this).find(':selected').data('moneda');
 
-                $('#moneda').prop('disabled', false);
+                $('#').prop('disabled', false);
 
-                $('#moneda').val(selectedMoneda);
+                $('#').val(selectedMoneda);
             });
         });
     </script>
