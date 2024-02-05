@@ -1,5 +1,11 @@
 @extends('../layout')
 @section('titulo', 'Operarios')
+@section('style')
+<style>
+
+</style>
+@endsection
+
 
 @include('navbar')
 @section('content')
@@ -32,6 +38,6 @@
         </tr>
     @endforeach
 @endsection
-<a href=""><button class="btn btn-outline-secondary btn-lg fixed-button">Crear Empleado</button></a>
+<a href=""><button class="btn btn-outline-secondary btn-lg fixed-button text-white border-white">Crear Empleado</button></a>
 
 @endsection
