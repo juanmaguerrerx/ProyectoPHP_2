@@ -1,5 +1,5 @@
 
-<div class="main">
+<div class="main marginTopTabla">
     <h1 class="text-center text-white">@yield('nombre_tabla')</h1>
 
     <div class="table-container">

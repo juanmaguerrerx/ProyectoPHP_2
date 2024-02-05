@@ -4,9 +4,10 @@
 
 
 <header>@include('navbar')</header>
+
 @section('content')
     @extends('../tabla')
-    @section('nombre_tabla')Clientes @endsection
+    @section('nombre_tabla') Clientes @endsection
 @section('thead')
     <th class="text-purple-800">CIF</th>
     <th>Nombre</th>

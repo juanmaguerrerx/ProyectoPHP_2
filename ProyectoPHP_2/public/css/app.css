@@ -1,5 +1,5 @@
 body {
-    background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
+    background-image: url(../images/screen-shot-video-games-mirror-s-edge-fall-wallpaper-preview.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     backdrop-filter: blur(15px);
@@ -48,7 +48,7 @@ body {
     width: 100%;
 }
 .b{
-    padding-top: 5px;
+    padding-top: 55px;
     color: rgb(0, 0, 0);
 }
 
@@ -115,4 +115,8 @@ thead,tbody, tr{
 
 .form-group {
     margin-bottom: 20px;
+}
+
+.marginTopTabla{
+    margin-top: 70px;
 }

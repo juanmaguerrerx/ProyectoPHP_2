@@ -18,9 +18,15 @@
         /* Centrar los enlaces */
     }
 
+    
+
     .nav-link {
         font-size: 18px;
         margin-right: 55px;
+    }
+    
+    .nav-item:hover .nav-link{
+        color: #FFC107 !important;
     }
 
     .cs {
@@ -29,7 +35,7 @@
     }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark mb-4 fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{route('dashboard')}}">
             No se Caen S.L
