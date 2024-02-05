@@ -31,7 +31,7 @@
             font-size: 19px;
         }
 
-        .custom-btn{
+        .custom-btn {
             width: 200px;
             height: 45px;
         }
@@ -83,8 +83,8 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary custom-btn">Enviar</button>
-            </div>
+                    <button type="submit" class="btn btn-primary custom-btn">Enviar</button>
+                </div>
             </div>
         </form>
     </div>
