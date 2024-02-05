@@ -67,7 +67,7 @@ body {
 }
 
 .table {
-    width: 100%;
+    width: fit-content;
     margin-bottom: 1rem;
     background-color: #0000004b;
     border-radius: 15px;
@@ -119,4 +119,12 @@ thead,tbody, tr{
 
 .marginTopTabla{
     margin-top: 70px;
+}
+
+.w{
+    width: 150px;
+}
+
+.wi{
+    width:700px;
 }

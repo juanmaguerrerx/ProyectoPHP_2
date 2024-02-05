@@ -15,7 +15,7 @@
 @endsection
 @include('navbar')
 @section('content')
-    <div class="form-container text-white fm">
+    <div class="form-container text-white fm marginTopTabla">
         <h2 class="text-center mb-4">Datos del Cliente</h2>
         <form>
             <div class="row mb-3">
