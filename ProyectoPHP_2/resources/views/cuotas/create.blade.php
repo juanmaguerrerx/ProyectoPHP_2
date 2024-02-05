@@ -14,6 +14,8 @@
             margin-left: 2.5px;
             height: 19px;
             width: 19px;
+            background-color: rgba(233, 232, 232, 0.381);
+            backdrop-filter: blur(5px);
         }
 
         .text-pagada {
@@ -28,11 +30,10 @@
 @endsection
 @include('navbar')
 @section('content')
-    <div class="form-container text-white fm  marginTopTabla custom-box">
-        <h2 class="text-center mb-4">Datos</h2>
+    <div class="form-container text-white fm marginTopTabla custom-box">
+        <h2 class="text-center mb-4">Datos Cuota</h2>
         <form>
             <div class="row mb-3">
-
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Empresa:</label>
                     <select name="cif" id="cif" class="form-select custom-select text-center" readonly>
