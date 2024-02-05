@@ -1,4 +1,4 @@
-### PROYECTO PHP 2 TRIMESTRE
+# PROYECTO PHP 2 TRIMESTRE
 
 Proyecto del segundo trimestre de DAW de la asignatura de Desarrollo Web en Entorno Servidor.
 
