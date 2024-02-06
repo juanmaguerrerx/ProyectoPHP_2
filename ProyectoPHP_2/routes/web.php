@@ -24,16 +24,38 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+/**
+ * Ruta Dashboard
+ */
 Route::get('/dashboard', [DashboardCtrl::class, 'mostrarDash'])->name('dashboard');
 
-Route::get('/clientes', [ClientesCtrl::class, 'index'])->name('clientes.index');
-Route::get('/clientes-create', [ClientesCtrl::class, 'create'])->name('clientes.create');
 
+/**
+ * Rutas Clientes
+ */
+Route::get('/clientes', [ClientesCtrl::class, 'index'])->name('clientes.index');
+
+Route::get('/clientes-create', [ClientesCtrl::class, 'create'])->name('clientes.create');
+Route::post('/clientes-create',[ClientesCtrl::class, 'store'])->name('clientes.store');
+
+
+/**
+ * Rutas Operarios
+ */
 Route::get('/operarios', [EmpleadosCtrl::class, 'index'])->name('operarios.index');
 
+/**
+ * Rutas Tareas
+ */
 Route::get('/tareas', [TareasCtrl::class, 'index'])->name('tareas.index');
 
+/**
+ * Rutas Incidencias
+ */
 Route::get('/incidencias', [IncidenciasCtrl::class, 'index'])->name('incidencias.index');
 
+/**
+ * Rutas Cuotas
+ */
 Route::get('/cuotas',[CuotasCtrl::class,'index'])->name('cuotas.index');
 Route::get('/cuotas-create', [CuotasCtrl::class, 'create'])->name('cuotas.create');

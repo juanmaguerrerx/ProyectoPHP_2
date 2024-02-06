@@ -15,7 +15,6 @@ class ClientesCtrl extends Controller
     {
         $clientes = Clientes::all();
         return view('clientes.index', compact('clientes'));
-
     }
 
     /**
@@ -34,7 +33,14 @@ class ClientesCtrl extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'cif' => 'required',
+            'nombre' => 'required',
+            'telefono' => 'required',
+            'correo' => 'required|email',
+            'cuenta_corriente' => 'required',
+            'pais' => 'required',
+        ]);
     }
 
     /**

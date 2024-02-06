@@ -82,9 +82,11 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
+    // ingles
+    // 'locale' => 'en',
 
-    'locale' => 'en',
-
+    // español  --> https://github.com/Laraveles/spanish/tree/master
+    'locale' => 'es',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

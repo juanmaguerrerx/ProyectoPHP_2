@@ -123,3 +123,7 @@ th {
 .pur:hover {
     background-color: rgb(147, 153, 64);
 }
+
+.message{
+    color:rgb(250, 117, 117);
+}

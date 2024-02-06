@@ -1,39 +1,55 @@
 @extends('../layout')
 @section('titulo', 'Dar de Alta Cliente')
 @section('style')
-<style>
+    <style>
 
-</style>  
+    </style>
 @endsection
 @include('navbar')
 @section('content')
     <div class="form-container fm marginTopTabla">
         <h2 class="text-center mb-4 text-white">Datos del Cliente</h2>
-        <form>
+        <form method="POST" action="{{ route('clientes.store') }}">
+            @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cif" class="form-label">CIF:</label>
                     <input type="text" class="form-control blu" id="cif" name="cif">
+                    @error('cif')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" class="form-control" id="nombre" name="nombre">
+                    @error('nombre')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="telefono" class="form-label">Teléfono:</label>
                     <input type="text" class="form-control" id="telefono" name="telefono">
+                    @error('telefono')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="correo" class="form-label">Correo:</label>
                     <input type="text" class="form-control" id="correo" name="correo">
+                    @error('correo')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cuenta_corriente" class="form-label">Cuenta Corriente:</label>
                     <input type="text" class="form-control" id="cuenta_corriente" name="cuenta_corriente">
+                    @error('cuenta_corriente')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="pais" class="form-label">País:</label>
@@ -44,6 +60,9 @@
                                 {{ $pais['nombre'] }}</option>
                         @endforeach
                     </select>
+                    @error('pais')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
