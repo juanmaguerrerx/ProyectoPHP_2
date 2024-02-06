@@ -12,10 +12,11 @@
     <title>@yield('titulo') | NsC S.L</title>
     <style>
         body {
-            background-image: url(./images/fondo.jpg);
+            /* background-image: url(./images/fondo.jpg);
             background-size: cover;
             background-repeat: no-repeat;
-            backdrop-filter: none;
+            backdrop-filter: none; */
+            background-color: rgb(194, 194, 194);
         }
     </style>
     @yield('style')

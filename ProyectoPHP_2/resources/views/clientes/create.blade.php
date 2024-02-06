@@ -2,20 +2,12 @@
 @section('titulo', 'Dar de Alta Cliente')
 @section('style')
 <style>
-.fm{
-    border-right: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-.form-control{
-    background-color:rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px); 
-    color: white;
-}
+
 </style>  
 @endsection
 @include('navbar')
 @section('content')
-    <div class="form-container text-white fm marginTopTabla">
+    <div class="form-container fm marginTopTabla">
         <h2 class="text-center mb-4">Datos del Cliente</h2>
         <form>
             <div class="row mb-3">

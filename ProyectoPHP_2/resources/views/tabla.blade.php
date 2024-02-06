@@ -1,6 +1,6 @@
 
 <div class="main marginTopTabla">
-    <h1 class="text-center text-white">@yield('nombre_tabla')</h1>
+    <h1 class="text-center">@yield('nombre_tabla')</h1>
 
     <div class="table-container">
         <table class="table table-hover">

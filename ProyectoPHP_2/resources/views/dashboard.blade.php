@@ -3,10 +3,11 @@
 @section('style')
     <style>
         body {
-            background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
+            /* background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
             background-size: cover;
             background-repeat: no-repeat;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px); */
+            background-color: whitesmoke;
         }
     </style>
 @endsection

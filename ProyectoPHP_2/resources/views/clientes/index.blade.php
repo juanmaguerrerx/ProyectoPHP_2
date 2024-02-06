@@ -9,7 +9,7 @@
     @extends('../tabla')
     @section('nombre_tabla') Clientes @endsection
 @section('thead')
-    <th class="text-purple-800">CIF</th>
+    <th>CIF</th>
     <th>Nombre</th>
     <th>Teléfono</th>
     <th>Correo</th>
@@ -34,6 +34,6 @@
     @endforeach
 @endsection
 <a href="{{ route('clientes.create') }}"><button
-        class="btn btn-outline-secondary btn-lg fixed-button text-white border-white">Crear
+        class="btn btn-outline-secondary btn-lg fixed-button border-white">Crear
         Cliente</button></a>
 @endsection

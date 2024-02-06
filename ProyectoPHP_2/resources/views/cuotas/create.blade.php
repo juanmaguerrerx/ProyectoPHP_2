@@ -30,7 +30,7 @@
 @endsection
 @include('navbar')
 @section('content')
-    <div class="form-container text-white fm marginTopTabla custom-box">
+    <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4">Datos Cuota</h2>
         <form>
             <div class="row mb-3">

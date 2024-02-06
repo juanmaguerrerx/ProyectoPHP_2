@@ -1,8 +1,8 @@
 body {
-    background-image: url(../images/screen-shot-video-games-mirror-s-edge-fall-wallpaper-preview.jpg);
+    /* background-image: url(../images/screen-shot-video-games-mirror-s-edge-fall-wallpaper-preview.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); */
 }
 .card-container {
     display: flex;
@@ -14,8 +14,9 @@ body {
 .card {
     width: 200px;
     height: 200px;
-    border: 5px solid #ccc;
-    background-color: rgba(28, 28, 28, 0.6);
+    color: black;
+    border: 0.5px solid whitesmoke;
+    background-color: rgb(230, 228, 228);
     box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
     margin: 20px;
     transition: transform 0.3s ease-in-out;
@@ -33,7 +34,7 @@ body {
     font-size: 20px;
     margin: 10px;
     text-align: center;
-    color: white;
+    color: black;
     letter-spacing: 3px;
 }
 
@@ -49,7 +50,7 @@ body {
 }
 .b{
     padding-top: 55px;
-    color: rgb(0, 0, 0);
+    color: black;
 }
 
 
@@ -129,13 +130,14 @@ thead,tbody, tr{
     width:700px;
 }
 
-.fm {
+.fm{
     border-right: 1px solid rgba(255, 255, 255, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
-
-.form-control {
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    color: white;
+.form-control{
+    background-color:rgba(255, 255, 255, 0.689);
+    backdrop-filter: blur(5px); 
+}
+.form-label{
+    color: black;
 }
