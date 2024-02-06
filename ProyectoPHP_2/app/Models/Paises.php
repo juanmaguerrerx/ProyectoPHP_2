@@ -15,7 +15,7 @@ class Paises extends Model
 
     public function getPaises()
     {
-        $paises = Paises::all();
+        $paises = Paises::orderBy('nombre')->get();
         return $paises;
     }
 

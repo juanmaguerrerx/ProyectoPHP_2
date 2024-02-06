@@ -9,18 +9,18 @@
     @extends('../tabla')
     @section('nombre_tabla') Clientes @endsection
 @section('thead')
-    <th>CIF</th>
-    <th>Nombre</th>
-    <th>Teléfono</th>
-    <th>Correo</th>
-    <th>Cuenta Corriente</th>
-    <th>País</th>
-    <th>Importe mensual</th>
-    <th><strong>Opciones</strong></th>
+    <th scope="col">CIF</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Telefono</th>
+    <th scope="col">Correo</th>
+    <th scope="col">Cuenta Corriente</th>
+    <th scope="col">País</th>
+    <th scope="col">Importe Mensual</th>
+    <th scope="col"><strong>Opciones</strong></th>
 @endsection
 @section('tbody')
     @foreach ($clientes as $cliente)
-        <tr>
+        <tr scope="row">
             <td>{{ $cliente['cif'] }}</td>
             <td>{{ $cliente['nombre'] }}</td>
             <td>{{ $cliente['telefono'] }}</td>
@@ -28,12 +28,11 @@
             <td>{{ $cliente['cuenta_corriente'] }}</td>
             <td>{{ $cliente['pais_id'] }}</td>
             <td>{{ $cliente['importe_mensual'] }}</td>
-            <td><a href=""><button class="btn btn-outline-warning btn-sm bb">Modificar</button></a><a
-                    href=""><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+            <td><a href=""><button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button></a><a
+                    href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button></a></td>
         </tr>
     @endforeach
 @endsection
-<a href="{{ route('clientes.create') }}"><button
-        class="btn btn-outline-secondary btn-lg fixed-button border-white">Crear
-        Cliente</button></a>
+<a href="{{ route('clientes.create') }}"><button class="btn btn-outline-secondary btn-lg fixed-button border-white"><i
+            class="bi bi-plus"></i></button></a>
 @endsection

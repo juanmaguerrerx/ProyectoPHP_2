@@ -1,9 +1,3 @@
-body {
-    /* background-image: url(../images/screen-shot-video-games-mirror-s-edge-fall-wallpaper-preview.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(15px); */
-}
 .card-container {
     display: flex;
     justify-content: center;
@@ -17,7 +11,7 @@ body {
     color: black;
     border: 0.5px solid whitesmoke;
     background-color: rgb(230, 228, 228);
-    box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
     margin: 20px;
     transition: transform 0.3s ease-in-out;
     display: flex;
@@ -48,7 +42,8 @@ body {
     height: 100%;
     width: 100%;
 }
-.b{
+
+.b {
     padding-top: 55px;
     color: black;
 }
@@ -67,39 +62,9 @@ body {
 
 }
 
-.table {
-    width: fit-content;
-    margin-bottom: 1rem;
-    background-color: #0000004b;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: white;
+th {
+    font-size:larger;
 }
-thead,tbody, tr{
-    border-radius: 15px;
-
-}
-
-.table th,
-.table td {
-    padding: 1rem;
-    text-align: center;
-}
-
-.table th {
-    background-color: #00000048;
-    color: #fff;
-}
-
-.table tbody tr:nth-child(odd) {
-    background-color: #0000004f;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #1010104b;
-    color: white;
-}
-
 .bb {
     margin-bottom: 3px;
 }
@@ -118,26 +83,36 @@ thead,tbody, tr{
     margin-bottom: 20px;
 }
 
-.marginTopTabla{
+.marginTopTabla {
     margin-top: 70px;
 }
 
-.w{
-    width: 150px;
+.w {
+    width: 200px;
 }
 
-.wi{
-    width:700px;
+.wi {
+    width: 700px;
 }
 
-.fm{
+.fm {
     border-right: 1px solid rgba(255, 255, 255, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
-.form-control{
-    background-color:rgba(255, 255, 255, 0.689);
-    backdrop-filter: blur(5px); 
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.689);
+    backdrop-filter: blur(5px);
 }
-.form-label{
+
+.form-label {
     color: black;
+}
+
+.pur {
+    background-color: rgb(209, 124, 209);
+}
+
+.pur:hover {
+    background-color: rgb(190, 114, 190);
 }

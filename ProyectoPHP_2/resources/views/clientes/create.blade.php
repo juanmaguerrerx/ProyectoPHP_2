@@ -47,9 +47,9 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <label for="moneda" class="form-label">Moneda:</label>
-                    <select name="moneda" class="form-control" id="moneda" disabled>
+                    <select name="moneda" disabled class="form-control" id="moneda">
                         @foreach ($paises as $pais)
                             <option value="{{ $pais['iso_moneda'] }}">{{ $pais['nombre_moneda'] }}</option>
                         @endforeach
@@ -66,9 +66,6 @@
         $(document).ready(function() {
             $('#pais').change(function() {
                 var selectedMoneda = $(this).find(':selected').data('moneda');
-
-                $('#moneda').prop('disabled', false);
-
                 $('#moneda').val(selectedMoneda);
             });
         });
