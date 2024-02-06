@@ -12,7 +12,9 @@ class IncidenciasCtrl extends Controller
      */
     public function index()
     {
-        //
+        $incidencias = Incidencias::all();
+        // dd($incidencias);
+        return view('incidencias.index', compact('incidencias'));
     }
 
     /**

@@ -41,7 +41,7 @@
                     No
                 @endif
             </td>
-            <td>{{ $fecha_pago == null ? '-' : $fecha_pago }}</td>
+            <td>{{ $fecha_pago == null ? '~' : $fecha_pago }}</td>
             <td>{{ $cuota['notas'] }}</td>
             <td>
                 <a href="">

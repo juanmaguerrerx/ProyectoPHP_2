@@ -47,7 +47,6 @@ Route::get('/operarios', [EmpleadosCtrl::class, 'index'])->name('operarios.index
 /**
  * Rutas Tareas
  */
-Route::get('/tareas', [TareasCtrl::class, 'index'])->name('tareas.index');
 
 /**
  * Rutas Incidencias

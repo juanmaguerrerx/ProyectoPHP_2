@@ -49,10 +49,7 @@
                     <a class="nav-link text-white" href="{{ route('operarios.index') }}">Operarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Tareas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="">Incidencias</a>
+                    <a class="nav-link text-white" href="{{route('incidencias.index')}}">Incidencias</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cuotas.index') }}">Facturas</a>

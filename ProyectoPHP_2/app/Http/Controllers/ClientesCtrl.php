@@ -14,6 +14,11 @@ class ClientesCtrl extends Controller
     public function index()
     {
         $clientes = Clientes::all();
+        foreach ($clientes as $cliente) {
+            $paisesMod = new Paises;
+            $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);
+        }
+        // dd($clientes);
         return view('clientes.index', compact('clientes'));
     }
 

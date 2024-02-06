@@ -25,13 +25,20 @@
 @endsection
 @section('tbody')
     @foreach ($empleados as $empleado)
+    @php
+     if ($empleado['fecha_alta'] != null && $empleado['fecha_alta'] != '0000-00-00') {
+        $fecha_alta = (new DateTime($empleado['fecha_alta']))->format('d/m/Y');
+     } else {
+        $fecha_alta = '~';
+     } 
+    @endphp
         <tr>
             <td>{{ $empleado['dni'] }}</td>
             <td>{{ $empleado['nombre_empleado'] }}</td>
             <td>{{ $empleado['correo'] }}</td>
             <td>{{ $empleado['telefono'] }}</td>
             <td>{{ $empleado['direccion'] }}</td>
-            <td>{{ $empleado['fecha_alta'] }}</td>
+            <td>{{ $fecha_alta }}</td>
             <td>{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</td>
             <td><a href=""><button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button></a><a
                 href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button></a></td>
