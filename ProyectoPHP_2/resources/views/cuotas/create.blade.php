@@ -3,7 +3,8 @@
 @section('style')
     <style>
         .custom-select {
-            width: 360px;
+            width: 375px;
+            margin: 0px auto;
         }
 
         .large-input {
@@ -31,8 +32,8 @@
 @include('navbar')
 @section('content')
     <div class="form-container fm marginTopTabla custom-box">
-        <h2 class="text-center mb-4">Datos Cuota</h2>
-        <form>
+        <h2 class="text-center mb-4 text-white">Datos Cuota</h2>
+        <form class="form-floating">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Empresa:</label>
@@ -45,21 +46,21 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="telefono" class="form-label">Concepto:</label>
-                    <input type="text" class="form-control large-input" id="telefono" name="telefono">
+                    <label for="concepto" class="form-label">Concepto:</label>
+                    <input type="text" class="form-control large-input" id="concepto" name="concepto">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="correo" class="form-label">Fecha de Emisión:</label>
+                    <label for="fecha_emision" class="form-label">Fecha de Emisión:</label>
                     <input type="date" class="form-control" id="fecha_emision" name="fecha_emision">
                 </div>
                 <div class="col-md-6">
-                    <label for="cuenta_corriente" class="form-label">Importe</label>
+                    <label for="importe" class="form-label">Importe</label>
                     <input type="text" class="form-control" id="importe" name="importe">
                 </div>
                 <div class="col-md-12 mt-4 text-center">
-                    <label for="pais" class="form-label text-pagada">Pagada: (marcar si lo está)</label>
+                    <label for="pagada" class="form-label text-pagada">Pagada: (marcar si lo está):</label> &nbsp;&nbsp;
                     <input type="checkbox" class="form-check-input check-lg" name="pagada" id="pagada">
                 </div>
             </div>
@@ -68,7 +69,7 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="moneda" class="form-label">Notas:</label>
-                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10" placeholder="Notas"></textarea>
+                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10"></textarea>
                 </div>
             </div>
             <div class="row mb-3">

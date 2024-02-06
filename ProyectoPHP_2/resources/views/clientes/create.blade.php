@@ -8,7 +8,7 @@
 @include('navbar')
 @section('content')
     <div class="form-container fm marginTopTabla">
-        <h2 class="text-center mb-4">Datos del Cliente</h2>
+        <h2 class="text-center mb-4 text-white">Datos del Cliente</h2>
         <form>
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -49,7 +49,7 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="moneda" class="form-label">Moneda:</label>
-                    <select name="moneda" disabled class="form-control" id="moneda">
+                    <select name="moneda" disabled class="form-control sel" id="moneda">
                         @foreach ($paises as $pais)
                             <option value="{{ $pais['iso_moneda'] }}">{{ $pais['nombre_moneda'] }}</option>
                         @endforeach

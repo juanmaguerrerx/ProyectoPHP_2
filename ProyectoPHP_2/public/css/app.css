@@ -9,9 +9,9 @@
     width: 200px;
     height: 200px;
     color: black;
-    border: 0.5px solid whitesmoke;
-    background-color: rgb(230, 228, 228);
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgb(211, 211, 211);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 9px 15px 15px rgba(0, 0, 0, 0.4);
     margin: 20px;
     transition: transform 0.3s ease-in-out;
     display: flex;
@@ -67,10 +67,11 @@ th {
 }
 .bb {
     margin-bottom: 3px;
+    margin-right: 4px;
 }
 
 .form-container {
-    max-width: 400px;
+    max-width: 800px;
     margin: auto;
     margin-top: 50px;
     background-color: rgba(255, 255, 255, 0.227);
@@ -100,19 +101,25 @@ th {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.form-control {
-    background-color: rgba(255, 255, 255, 0.689);
+.form-control{
+    background-color: rgba(255, 255, 255, 0.149);
     backdrop-filter: blur(5px);
+    color: white;
 }
-
-.form-label {
+.sel{
     color: black;
 }
 
+
+
+.form-label {
+    color: rgb(255, 255, 255);
+}
+
 .pur {
-    background-color: rgb(209, 124, 209);
+    background-color: rgb(197, 205, 84);
 }
 
 .pur:hover {
-    background-color: rgb(190, 114, 190);
+    background-color: rgb(147, 153, 64);
 }

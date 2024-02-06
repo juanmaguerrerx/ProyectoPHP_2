@@ -3,18 +3,14 @@
 @section('style')
     <style>
         body {
-            /* background-image: url(../images/photo-1563340012-9a46fb6a29ff.avif);
-            background-size: cover;
-            background-repeat: no-repeat;
-            backdrop-filter: blur(15px); */
-            background-color: whitesmoke;
+            background-color: rgb(147, 144, 57);
         }
     </style>
 @endsection
 <header>@include('navbar')</header>
 @section('content')
-    <div class="text-center b">
-        <h1>Hola, Juanma</h1> {{-- nombre del usuario --}}
+    <div class="text-center b text-white">
+        <h1>Hola, usuario</h1> {{-- nombre del usuario --}}
         <h4>¿A dónde vamos?</h4>
     </div>
     <div class="card-container">

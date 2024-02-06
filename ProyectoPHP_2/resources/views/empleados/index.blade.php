@@ -33,8 +33,8 @@
             <td>{{ $empleado['direccion'] }}</td>
             <td>{{ $empleado['fecha_alta'] }}</td>
             <td>{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</td>
-            <td><a href=""><button class="btn btn-outline-warning btn-sm bb">Modificar</button></a><a
-                    href=""><button class="btn btn-danger btn-sm">Eliminar</button></a></td>
+            <td><a href=""><button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button></a><a
+                href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button></a></td>
         </tr>
     @endforeach
 @endsection

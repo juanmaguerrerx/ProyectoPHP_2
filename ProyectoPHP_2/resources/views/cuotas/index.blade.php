@@ -16,7 +16,7 @@
     <th>Pagada</th>
     <th class="w">Fecha de Pago</th>
     <th>Notas</th>
-    <th><strong>Opciones</strong></th>
+    <th class="w"><strong>Opciones</strong></th>
 @endsection
 @section('tbody')
 

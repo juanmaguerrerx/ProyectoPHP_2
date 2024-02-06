@@ -50,9 +50,7 @@
     }
 
     thead tr {
-        background-color: whitesmoke;
-        border: 0.5px solid whitesmoke;
-        border-bottom: none;
+        background-color: rgba(254, 255, 211, 0.5);
     }
 
     .custom-table thead tr,
@@ -90,7 +88,7 @@
 
     .custom-table tbody tr th,
     .custom-table tbody tr td {
-        background: #25252b;
+        background: #2b2b25;
         border: none;
         -webkit-transition: .3s all ease;
         -o-transition: .3s all ease;
@@ -126,7 +124,7 @@
     .custom-table tbody tr:hover th,
     .custom-table tbody tr:hover td {
         color: #fff;
-        background: #2e2e36;
+        background: #36362e;
     }
 
     .custom-table tbody tr.active th a,
@@ -158,7 +156,7 @@
         height: 20px;
         width: 20px;
         border-radius: 4px;
-        border: 2px solid #3f3f47;
+        border: 2px solid #47463f;
         background: transparent;
     }
 
@@ -229,3 +227,5 @@
             <tbody>
                 @yield('tbody')
             </tbody>
+        </table>
+    </div>
