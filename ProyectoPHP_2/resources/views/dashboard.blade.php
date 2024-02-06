@@ -29,19 +29,13 @@
 
     <div class="card-container">
         <div class="card in">
-            <a href="" class="card-link">
+            <a href="{{route('incidencias.index')}}" class="card-link">
                 <div class="card-title">Incidencias</div>
             </a>
         </div>
 
-        <div class="card ta">
-            <a href="" class="card-link">
-                <div class="card-title">Tareas</div>
-            </a>
-        </div>
-
         <div class="card fa">
-            <a href="" class="card-link">
+            <a href="{{route('cuotas.index')}}" class="card-link">
                 <div class="card-title">Facturas/Cuotas</div>
             </a>
         </div>

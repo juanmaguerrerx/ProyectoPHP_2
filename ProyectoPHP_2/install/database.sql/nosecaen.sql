@@ -22,9 +22,9 @@ ALTER TABLE `incidencias`
 ADD CONSTRAINT `incidencias_cif_cliente_foreign` FOREIGN KEY (`cif_cliente`) REFERENCES `clientes` (`cif`);
 
 ALTER TABLE `incidencias`
-ADD CONSTRAINT `incidencias_dni_empleado_foreign` FOREIGN KEY (`dni_empleado`) REFERENCES `empleados` (`dni`);
+ADD CONSTRAINT `incidencias_provincia_foreign` FOREIGN KEY (`provincia`) REFERENCES `tbl_provincias` (`cod`);
 
--- DATOS ALEATORIOS
+-- DATOS ALEATORIOS (PARA EL FUNCIONAMIENTO)
 
 INSERT INTO
     `clientes` (
@@ -80,4 +80,24 @@ VALUES (
     ),
     (
         'JKL012', 'Cuota Mensual', '2024-04-05', 600.00, 0, NULL, 'Cuota mensual pendiente'
+    );
+
+INSERT INTO
+    incidencias (
+        cif_cliente, persona_contacto, telefono_contacto, descripcion, correo_electronico, direccion, poblacion, codigo_postal, provincia, estado, fecha_creacion, dni_empleado, fecha_realizacion, anotaciones_anteriores, anotaciones_posteriores, fichero_resumen
+    )
+VALUES (
+        'ABC123', 'Persona1', '111111111', 'Descripción 1', 'persona1@example.com', 'Dirección1', 'Población1', '12345', 1, 'P', '2024-02-06', '12345678A', '2024-02-07', 'Anotaciones anteriores 1', 'Anotaciones posteriores 1', 'resumen1.pdf'
+    ),
+    (
+        'DEF456', 'Persona2', '222222222', 'Descripción 2', 'persona2@example.com', 'Dirección2', 'Población2', '23456', 2, 'R', '2024-02-07', '23456789B', '2024-02-08', 'Anotaciones anteriores 2', 'Anotaciones posteriores 2', 'resumen2.pdf'
+    ),
+    (
+        'GHI789', 'Persona3', '333333333', 'Descripción 3', 'persona3@example.com', 'Dirección3', 'Población3', '34567', 3, 'C', '2024-02-08', '34567890C', '2024-02-09', 'Anotaciones anteriores 3', 'Anotaciones posteriores 3', 'resumen3.pdf'
+    ),
+    (
+        'JKL012', 'Persona4', '444444444', 'Descripción 4', 'persona4@example.com', 'Dirección4', 'Población4', '45678', 4, 'E', '2024-02-09', '45678901D', '2024-02-10', 'Anotaciones anteriores 4', 'Anotaciones posteriores 4', 'resumen4.pdf'
+    ),
+    (
+        'ABC123', 'Persona5', '555555555', 'Descripción 5', 'persona5@example.com', 'Dirección5', 'Población5', '56789', 5, 'P', '2024-02-10', '56789012E', '2024-02-11', 'Anotaciones anteriores 5', 'Anotaciones posteriores 5', 'resumen5.pdf'
     );

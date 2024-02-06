@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidencias;
 use Illuminate\Http\Request;
+use App\Models\TblProvincias;
 
 class IncidenciasCtrl extends Controller
 {
@@ -13,7 +14,10 @@ class IncidenciasCtrl extends Controller
     public function index()
     {
         $incidencias = Incidencias::all();
-        // dd($incidencias);
+        $provincias = new TblProvincias;
+        foreach($incidencias as $incidencia){
+            $incidencia['provincia'] = $provincias->getProvincia($incidencia['provincia']);
+        }
         return view('incidencias.index', compact('incidencias'));
     }
 
