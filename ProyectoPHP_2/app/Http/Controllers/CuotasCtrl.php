@@ -31,7 +31,13 @@ class CuotasCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'cif' => 'required',
+            'concepto' => 'required',
+            'fecha_emision' => 'required',
+            'importe' => 'required'
+        ]);
     }
 
     /**

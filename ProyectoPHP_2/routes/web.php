@@ -38,7 +38,7 @@ Route::get('/clientes', [ClientesCtrl::class, 'index'])->name('clientes.index');
 Route::get('/clientes-create', [ClientesCtrl::class, 'create'])->name('clientes.create');
 Route::get('/clientes-edit', [ClientesCtrl::class, 'edit'])->name('clientes.edit');
 // POST
-Route::post('/clientes-create',[ClientesCtrl::class, 'store'])->name('clientes.store');
+Route::post('/clientes-create', [ClientesCtrl::class, 'store'])->name('clientes.store');
 
 
 
@@ -47,7 +47,7 @@ Route::post('/clientes-create',[ClientesCtrl::class, 'store'])->name('clientes.s
  * Rutas Operarios
  */
 Route::get('/empleados', [EmpleadosCtrl::class, 'index'])->name('empleados.index');
-Route::get('/empleados-create',[EmpleadosCtrl::class, 'create'])->name('empleados.create');
+Route::get('/empleados-create', [EmpleadosCtrl::class, 'create'])->name('empleados.create');
 Route::get('/empleados-edit', [EmpleadosCtrl::class, 'edit'])->name('empleados.edit');
 
 
@@ -57,17 +57,19 @@ Route::get('/empleados-edit', [EmpleadosCtrl::class, 'edit'])->name('empleados.e
  */
 // GET
 Route::get('/incidencias', [IncidenciasCtrl::class, 'index'])->name('incidencias.index');
-Route::get('/incidencias-create',[IncidenciasCtrl::class, 'create'])->name('incidencias.create');
-Route::get('/incidencias-show',[IncidenciasCtrl::class, 'show'])->name('incidencias.show');
-Route::get('/incidencias-edit',[IncidenciasCtrl::class, 'edit'])->name('incidencias.edit');
+Route::get('/incidencias-create', [IncidenciasCtrl::class, 'create'])->name('incidencias.create');
+Route::get('/incidencias-show', [IncidenciasCtrl::class, 'show'])->name('incidencias.show');
+Route::get('/incidencias-edit', [IncidenciasCtrl::class, 'edit'])->name('incidencias.edit');
 // POST
 
 /**
  * Rutas Cuotas
  */
 // GET
-Route::get('/cuotas',[CuotasCtrl::class,'index'])->name('cuotas.index');
+Route::get('/cuotas', [CuotasCtrl::class, 'index'])->name('cuotas.index');
 Route::get('/cuotas-create', [CuotasCtrl::class, 'create'])->name('cuotas.create');
 Route::get('/cuotas-edit', [CuotasCtrl::class, 'edit'])->name('cuotas.edit');
 
+
 // POST
+Route::post('/cuotas-store', [CuotasCtrl::class, 'store'])->name('cuotas.store');

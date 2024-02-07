@@ -15,7 +15,7 @@ class IncidenciasCtrl extends Controller
     {
         $incidencias = Incidencias::all();
         $provincias = new TblProvincias;
-        foreach($incidencias as $incidencia){
+        foreach ($incidencias as $incidencia) {
             $incidencia['provincia'] = $provincias->getProvincia($incidencia['provincia']);
         }
         return view('incidencias.index', compact('incidencias'));

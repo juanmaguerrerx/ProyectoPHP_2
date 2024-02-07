@@ -33,31 +33,43 @@
 @section('content')
     <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4 text-white">Datos Cuota</h2>
-        <form class="form-floating">
+        <form class="form-floating" method="POST" action="{{ route('cuotas.store') }}">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="nombre" class="form-label">Empresa:</label>
+                    <label for="cif" class="form-label">Empresa:</label>
                     <select name="cif" id="cif" class="form-select custom-select text-center" readonly>
                         @foreach ($clientes as $cliente)
                             <option value="{{ $cliente['cif'] }}">{{ $cliente['nombre'] }}</option>
                         @endforeach
                     </select>
+                    @error('cif')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="concepto" class="form-label">Concepto:</label>
                     <input type="text" class="form-control large-input" id="concepto" name="concepto">
+                    @error('concepto')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="fecha_emision" class="form-label">Fecha de Emisión:</label>
                     <input type="date" class="form-control" id="fecha_emision" name="fecha_emision">
+                    @error('fecha_emision')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="importe" class="form-label">Importe</label>
                     <input type="text" class="form-control" id="importe" name="importe">
+                    @error('importe')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="col-md-12 mt-4 text-center">
                     <label for="pagada" class="form-label text-pagada">Pagada: (marcar si lo está):</label> &nbsp;&nbsp;
@@ -68,7 +80,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="moneda" class="form-label">Notas:</label>
+                    <label for="notas" class="form-label">Notas:</label>
                     <textarea name="notas" class="form-control" id="notas" cols="43" rows="10"></textarea>
                 </div>
             </div>

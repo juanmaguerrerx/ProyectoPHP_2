@@ -21,7 +21,7 @@
         </div>
 
         <div class="card">
-            <a href="{{ route('operarios.index') }}" class="card-link">
+            <a href="{{ route('empleados.index') }}" class="card-link">
                 <div class="card-title">Operarios</div>
             </a>
         </div>
