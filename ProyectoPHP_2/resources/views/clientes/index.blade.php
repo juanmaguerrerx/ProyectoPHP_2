@@ -28,11 +28,25 @@
             <td>{{ $cliente['cuenta_corriente'] }}</td>
             <td>{{ $cliente['pais_id'] }}</td>
             <td>{{ $cliente['importe_mensual'] }}</td>
-            <td><a href=""><button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button></a><a
-                    href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button></a></td>
+            <td>
+                <abbr title="Editar">
+                    <a href="{{route('clientes.edit')}}">
+                        <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
+                    </a>
+                </abbr>
+                <abbr title="Eliminar">
+                    <a href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button>
+                    </a>
+                </abbr>
+            </td>
         </tr>
     @endforeach
 @endsection
-<a href="{{ route('clientes.create') }}"><button class="btn btn-outline-secondary btn-lg fixed-button border-white"><i
-            class="bi bi-plus"></i></button></a>
+<abbr title="Añadir">
+    <a href="{{ route('clientes.create') }}">
+        <button class="btn btn-outline-secondary ww btn-lg text-white fixed-button border-white"><i
+                class="bi bi-plus"></i>
+        </button>
+    </a>
+</abbr>
 @endsection

@@ -27,7 +27,9 @@
             if ($cuota['fecha_pago'] !== null) {
                 $cuota['fecha_pago'] = new DateTime($cuota['fecha_pago']);
                 $fecha_pago = $cuota['fecha_pago']->format('d/m/Y');
-            }else $fecha_pago = null;
+            } else {
+                $fecha_pago = null;
+            }
         @endphp
         <tr>
             <td>{{ $cuota['cif_cliente'] }}</td>
@@ -44,20 +46,30 @@
             <td>{{ $fecha_pago == null ? '~' : $fecha_pago }}</td>
             <td>{{ $cuota['notas'] }}</td>
             <td>
-                <a href="">
-                    <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
-                </a>
-                <a href="">
-                    <button class="btn btn-danger bb"><i class="bi bi-trash"></i></button>
-                </a>
+                <abbr title="Editar">
+                    <a href="{{ route('cuotas.edit') }}">
+                        <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
+                    </a>
+                </abbr>
+                <abbr title="Eliminar">
+                    <a href="">
+                        <button class="btn btn-danger bb"><i class="bi bi-trash"></i></button>
+                    </a>
+                </abbr>
                 @if ($cuota['pagada'] == 1)
-                    <a href=""><button class="btn btn-outline pur bb"><i class="bi bi-download"></i></button></a>
+                    <abbr title="Descargar">
+                        <a href=""><button class="btn btn-outline pur bb"><i class="bi bi-download"></i></button></a>
+                    </abbr>
                 @endif
             </td>
         </tr>
     @endforeach
 @endsection
-<a href="{{ route('cuotas.create') }}"><button
-        class="btn btn-outline-secondary btn-lg fixed-button text-white border-white"><i
-            class="bi bi-plus"></i></button></button></a>
+<abbr title="Añadir">
+    <a href="{{ route('cuotas.create') }}">
+        <button class="btn btn-outline-secondary btn-lg fixed-button ww text-white border-white"><i
+                class="bi bi-plus"></i>
+        </button>
+    </a>
+</abbr>
 @endsection
