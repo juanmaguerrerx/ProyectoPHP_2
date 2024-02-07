@@ -130,7 +130,22 @@ th {
 .message{
     color:rgb(250, 117, 117);
 }
+.R {
+    /* realizada */
+    background-color: rgba(48, 74, 8, 0.7) !important;
+}
 
-/* abbr{
-    text-decoration: none;
-} */
+.C {
+    /* cancelada */
+    background-color: rgba(74, 10, 8, 0.7) !important;
+}
+
+.P {
+    /* en proceso */
+    background-color: rgba(8, 49, 74, 0.7) !important;
+}
+
+.E {
+    /* esperando aprobacion */
+    background-color: rgba(74, 60, 8, 0.7) !important;
+}

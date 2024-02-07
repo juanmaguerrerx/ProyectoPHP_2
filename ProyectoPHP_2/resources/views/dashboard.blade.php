@@ -3,7 +3,7 @@
 @section('style')
     <style>
         body {
-            background-color: rgb(77, 76, 40);
+            background-color: rgb(59, 57, 0);
         }
     </style>
 @endsection
@@ -39,7 +39,6 @@
                 <div class="card-title">Facturas/Cuotas</div>
             </a>
         </div>
-
 
     </div>
 @endsection

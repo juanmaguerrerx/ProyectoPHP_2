@@ -34,6 +34,7 @@
     <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4 text-white">Datos Cuota</h2>
         <form class="form-floating" method="POST" action="{{ route('cuotas.store') }}">
+            @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cif" class="form-label">Empresa:</label>

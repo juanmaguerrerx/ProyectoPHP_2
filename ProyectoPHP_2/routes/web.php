@@ -46,10 +46,12 @@ Route::post('/clientes-create', [ClientesCtrl::class, 'store'])->name('clientes.
 /**
  * Rutas Operarios
  */
+// GET
 Route::get('/empleados', [EmpleadosCtrl::class, 'index'])->name('empleados.index');
 Route::get('/empleados-create', [EmpleadosCtrl::class, 'create'])->name('empleados.create');
 Route::get('/empleados-edit', [EmpleadosCtrl::class, 'edit'])->name('empleados.edit');
-
+// POST
+Route::post('/empleados-create',[EmpleadosCtrl::class, 'store'])->name('empleados.store');
 
 
 /**
@@ -72,4 +74,4 @@ Route::get('/cuotas-edit', [CuotasCtrl::class, 'edit'])->name('cuotas.edit');
 
 
 // POST
-Route::post('/cuotas-store', [CuotasCtrl::class, 'store'])->name('cuotas.store');
+Route::post('/cuotas-create', [CuotasCtrl::class, 'store'])->name('cuotas.store');

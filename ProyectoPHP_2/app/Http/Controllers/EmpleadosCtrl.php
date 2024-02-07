@@ -32,6 +32,14 @@ class EmpleadosCtrl extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'dni'=>'required',
+            'nombre'=>'required',
+            'correo'=>'required|email',
+            'telefono'=>'required|numeric|digits:10',
+            'fecha_alta'=>'required|date|before_or_equal:' . now()->format('d-m-Y'),
+            'direccion'=>'required',
+        ]);
     }
 
     /**

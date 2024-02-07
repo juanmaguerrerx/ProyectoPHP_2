@@ -18,25 +18,7 @@
             font-size: small;
         }
 
-        .R {
-            /* realizada */
-            background-color: rgba(48, 74, 8, 0.7) !important;
-        }
-
-        .C {
-            /* cancelada */
-            background-color: rgba(74, 10, 8, 0.7) !important;
-        }
-
-        .P {
-            /* en proceso */
-            background-color: rgba(8, 49, 74, 0.7) !important;
-        }
-
-        .E {
-            /* esperando aprobacion */
-            background-color: rgba(74, 60, 8, 0.7) !important;
-        }
+        
     </style>
     <th>CIF</th>
     <th>Nombre</th>

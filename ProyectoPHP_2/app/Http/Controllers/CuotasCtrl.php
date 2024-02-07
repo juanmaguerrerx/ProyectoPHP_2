@@ -36,7 +36,7 @@ class CuotasCtrl extends Controller
             'cif' => 'required',
             'concepto' => 'required',
             'fecha_emision' => 'required',
-            'importe' => 'required'
+            'importe' => 'required',
         ]);
     }
 
