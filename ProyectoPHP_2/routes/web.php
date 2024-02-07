@@ -36,6 +36,7 @@ Route::get('/dashboard', [DashboardCtrl::class, 'mostrarDash'])->name('dashboard
 // GET
 Route::get('/clientes', [ClientesCtrl::class, 'index'])->name('clientes.index');
 Route::get('/clientes-create', [ClientesCtrl::class, 'create'])->name('clientes.create');
+Route::get('/clientes-edit', [ClientesCtrl::class, 'edit'])->name('clientes.edit');
 // POST
 Route::post('/clientes-create',[ClientesCtrl::class, 'store'])->name('clientes.store');
 
@@ -47,6 +48,8 @@ Route::post('/clientes-create',[ClientesCtrl::class, 'store'])->name('clientes.s
  */
 Route::get('/empleados', [EmpleadosCtrl::class, 'index'])->name('empleados.index');
 Route::get('/empleados-create',[EmpleadosCtrl::class, 'create'])->name('empleados.create');
+Route::get('/empleados-edit', [EmpleadosCtrl::class, 'edit'])->name('empleados.edit');
+
 
 
 /**
@@ -65,5 +68,6 @@ Route::get('/incidencias-edit',[IncidenciasCtrl::class, 'edit'])->name('incidenc
 // GET
 Route::get('/cuotas',[CuotasCtrl::class,'index'])->name('cuotas.index');
 Route::get('/cuotas-create', [CuotasCtrl::class, 'create'])->name('cuotas.create');
+Route::get('/cuotas-edit', [CuotasCtrl::class, 'edit'])->name('cuotas.edit');
 
 // POST

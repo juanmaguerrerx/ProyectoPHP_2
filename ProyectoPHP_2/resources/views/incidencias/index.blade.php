@@ -96,7 +96,7 @@
             <td>{{ $incidencia['fecha_realizacion'] }}</td>
             <td>
                 <abbr title="Editar">
-                    <a href="">
+                    <a href="{{route('incidencias.edit')}}">
                         <button class="btn btn-outline-warning ww bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>

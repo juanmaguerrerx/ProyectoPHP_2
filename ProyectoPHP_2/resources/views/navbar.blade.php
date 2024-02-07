@@ -46,7 +46,7 @@
                     <a class="nav-link text-white" href="{{ route('clientes.index') }}">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('operarios.index') }}">Operarios</a>
+                    <a class="nav-link text-white" href="{{ route('empleados.index') }}">Empleados</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{route('incidencias.index')}}">Incidencias</a>
