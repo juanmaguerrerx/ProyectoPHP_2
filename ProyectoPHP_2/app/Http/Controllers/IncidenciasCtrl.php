@@ -27,6 +27,7 @@ class IncidenciasCtrl extends Controller
     public function create()
     {
         //
+        return view('incidencias.create');
     }
 
     /**

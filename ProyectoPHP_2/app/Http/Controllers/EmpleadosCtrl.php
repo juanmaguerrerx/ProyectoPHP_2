@@ -23,6 +23,7 @@ class EmpleadosCtrl extends Controller
     public function create()
     {
         //
+        return view('empleados.create');
     }
 
     /**
