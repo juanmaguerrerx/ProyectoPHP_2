@@ -78,11 +78,6 @@
                 <td id="notas">{{ $cuota['notas'] }}</td>
             </tr>
         </table>
-        <div class="btn">
-            <form action="" method="post">
-                <button type="submit" class="button-download">Descargar</button>
-            </form>
-        </div>
     </div>
 </body>
 

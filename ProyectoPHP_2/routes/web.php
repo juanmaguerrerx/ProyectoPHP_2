@@ -8,6 +8,8 @@ use App\Http\Controllers\EmpleadosCtrl;
 use App\Http\Controllers\IncidenciasCtrl;
 use App\Http\Controllers\OperariosCtrl;
 use App\Http\Controllers\TareasCtrl;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ use App\Http\Controllers\TareasCtrl;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('dashboard');
 });
@@ -51,3 +54,5 @@ Route::resource('incidencias', IncidenciasCtrl::class);
  * Rutas Cuotas
  */
 Route::resource('cuotas', CuotasCtrl::class);
+//Ruta para descargar factura
+Route::get('/cuotas/{cuota}', [CuotasCtrl::class, 'factura'])->name('cuotas.factura');
