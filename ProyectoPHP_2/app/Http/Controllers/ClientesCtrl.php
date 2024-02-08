@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clientes;
 use Illuminate\Http\Request;
 use App\Models\Paises;
+use App\Rules\CIFValidation;
 
 class ClientesCtrl extends Controller
 {
@@ -39,13 +40,30 @@ class ClientesCtrl extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'cif' => 'required',
+            'cif' => ['required', new CIFValidation],
             'nombre' => 'required',
             'telefono' => 'required',
             'correo' => 'required|email',
             'cuenta_corriente' => 'required',
+            'importe_mensual' => 'nullable|numeric',
             'pais' => 'required',
         ]);
+
+        // Si la validación pasa, crear un nuevo cliente
+        $cliente = new Clientes;
+        $cliente->cif = $request->cif;
+        $cliente->nombre = $request->nombre;
+        $cliente->telefono = $request->telefono;
+        $cliente->correo = $request->correo;
+        $cliente->cuenta_corriente = $request->cuenta_corriente;
+        $cliente->importe_mensual = $request->importe_mensual;
+        $cliente->pais_id = $request->pais;
+
+        // Guardar el cliente en la base de datos
+        $cliente->save();
+
+        // Puedes retornar una respuesta adecuada aquí, por ejemplo, redirigir a una vista de éxito
+        return redirect()->route('clientes.index')->with('success', 'Cliente añadido correctamente');
     }
 
     /**

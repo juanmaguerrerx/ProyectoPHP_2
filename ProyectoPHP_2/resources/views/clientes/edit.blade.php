@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="moneda" class="form-label">Moneda:</label>
                     <select name="moneda" disabled class="form-control sel" id="moneda">
                         @foreach ($paises as $pais)
@@ -84,7 +84,14 @@
                             </option>
                         @endforeach
                     </select>
-
+                </div>
+                <div class="col-md-6">
+                    <label for="importe_mensual" class="form-label">Importe mensual:</label>
+                    <input type="text" class="form-control" name="importe_mensual" id="importe_mensual"
+                        value="{{ $cliente['importe_mensual'] ? $cliente['importe_mensual'] : '' }}">
+                    @error('importe_mensual')
+                        <p class="message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
