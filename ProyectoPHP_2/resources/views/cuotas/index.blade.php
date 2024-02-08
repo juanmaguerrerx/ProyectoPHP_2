@@ -37,7 +37,7 @@
                 $fecha_pago = null;
             }
         @endphp
-        <tr class="{{$clase_pagada}}">
+        <tr class="{{ $clase_pagada }}">
             <td>{{ $cuota['cif_cliente'] }}</td>
             <td>{{ $cuota['concepto'] }}</td>
             <td>{{ $fecha_emision }}</td>
@@ -64,7 +64,8 @@
                 </abbr>
                 @if ($cuota['pagada'] == 1)
                     <abbr title="Descargar">
-                        <a href="{{route('cuotas.show',[$cuota->id])}}"><button class="btn btn-outline pur bb"><i class="bi bi-download"></i></button></a>
+                        <a href="{{ route('cuotas.show', [$cuota->id]) }}"><button class="btn btn-outline pur bb"><i
+                                    class="bi bi-download"></i></button></a>
                     </abbr>
                 @endif
             </td>

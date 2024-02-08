@@ -9,8 +9,9 @@ class Empleados extends Model
 {
     use HasFactory;
 
-    public function getEmpleado($dni){
-        $empleado = Empleados::where('dni',$dni)->value('nombre_empleado');
+    public function getEmpleado($dni)
+    {
+        $empleado = Empleados::where('dni', $dni)->value('nombre_empleado');
         return $empleado;
     }
 }

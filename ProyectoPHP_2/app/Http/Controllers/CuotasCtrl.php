@@ -14,7 +14,7 @@ class CuotasCtrl extends Controller
     public function index()
     {
         $cuotas = Cuotas::all();
-        return view('cuotas.index', ['cuotas'=>$cuotas]);
+        return view('cuotas.index', ['cuotas' => $cuotas]);
     }
 
     /**
@@ -31,7 +31,7 @@ class CuotasCtrl extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'cif' => 'required',
             'concepto' => 'required',
@@ -46,7 +46,7 @@ class CuotasCtrl extends Controller
     public function show(Cuotas $cuota)
     {
         //
-        return view('cuotas.factura',compact('cuota'));
+        return view('cuotas.factura', compact('cuota'));
     }
 
     /**
@@ -56,7 +56,7 @@ class CuotasCtrl extends Controller
     {
         //
         $clientes = Clientes::select('cif', 'nombre')->get();
-        return view('cuotas.edit',compact('cuota','clientes'));
+        return view('cuotas.edit', compact('cuota', 'clientes'));
     }
 
     /**
@@ -67,7 +67,7 @@ class CuotasCtrl extends Controller
         //
     }
 
-    
+
     /**
      * Remove the specified resource from storage.
      */

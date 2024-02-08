@@ -36,7 +36,7 @@ class IncidenciasCtrl extends Controller
         $empleados = $empleados->all();
         $clientes = new Clientes;
         $clientes = $clientes->all();
-        return view('incidencias.create', compact('provincias', 'empleados','clientes'));
+        return view('incidencias.create', compact('provincias', 'empleados', 'clientes'));
     }
 
     /**
@@ -53,6 +53,7 @@ class IncidenciasCtrl extends Controller
     public function show(Incidencias $incidencia)
     {
         //
+        // dd($incidencia);
         $empleados = new Empleados;
         $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
         $provincias = new TblProvincias;
@@ -72,7 +73,7 @@ class IncidenciasCtrl extends Controller
         $empleados = $empleados->all();
         $clientes = new Clientes;
         $clientes = $clientes->all();
-        return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados','clientes'));
+        return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados', 'clientes'));
     }
 
     /**
@@ -81,6 +82,23 @@ class IncidenciasCtrl extends Controller
     public function update(Request $request, Incidencias $incidencia)
     {
         //
+        $request->validate([
+            "cif_cliente" => "required",
+            "persona_contacto" => "required",
+            "telefono_contacto" => "required|numeric|digits:10",
+            "descripcion" => "required",
+            "correo" => "required|email",
+            "direccion" => "required",
+            "poblacion" => "required",
+            "codigo_postal" => "required",
+            "provincia" => "required",
+            "estado" => "required",
+            "fecha_creacion" => "required",
+            "dni_empleado" => "required",
+            "fecha_realizacion" => "required",
+            "anotaciones_anteriores" => "required",
+            "anotaciones_posteriores" => "Anotaciones posteriores 1",
+        ]);
     }
 
     /**

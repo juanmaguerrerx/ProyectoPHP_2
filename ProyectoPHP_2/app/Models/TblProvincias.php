@@ -9,8 +9,9 @@ class TblProvincias extends Model
 {
     use HasFactory;
 
-    public function getProvincia($cod){
-        $provincia = TblProvincias::where('cod',$cod)->value('nombre');
+    public function getProvincia($cod)
+    {
+        $provincia = TblProvincias::where('cod', $cod)->value('nombre');
         return $provincia;
     }
 }

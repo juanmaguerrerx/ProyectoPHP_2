@@ -33,12 +33,12 @@ class EmpleadosCtrl extends Controller
     {
         //
         $request->validate([
-            'dni'=>'required',
-            'nombre'=>'required',
-            'correo'=>'required|email',
-            'telefono'=>'required|numeric|digits:10',
-            'fecha_alta'=>'required|date|before_or_equal:' . now()->format('d-m-Y'),
-            'direccion'=>'required',
+            'dni' => 'required',
+            'nombre' => 'required',
+            'correo' => 'required|email',
+            'telefono' => 'required|numeric|digits:10',
+            'fecha_alta' => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
+            'direccion' => 'required',
         ]);
     }
 
@@ -56,7 +56,7 @@ class EmpleadosCtrl extends Controller
     public function edit(Empleados $empleado)
     {
         //
-        return view('empleados.edit',compact('empleado'));
+        return view('empleados.edit', compact('empleado'));
     }
 
     /**

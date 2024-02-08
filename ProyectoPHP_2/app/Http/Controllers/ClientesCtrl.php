@@ -17,7 +17,7 @@ class ClientesCtrl extends Controller
         foreach ($clientes as $cliente) {
             $paisesMod = new Paises;
             $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);
-            $cliente['pais_iso2'] = $paisesMod->where('nombre',$cliente['pais_id'])->value('iso2');
+            $cliente['pais_iso2'] = $paisesMod->where('nombre', $cliente['pais_id'])->value('iso2');
         }
         return view('clientes.index', compact('clientes'));
     }
@@ -57,7 +57,7 @@ class ClientesCtrl extends Controller
         $paisesMod = new Paises;
         $paises = $paisesMod->getPaises();
         // dd($cliente);
-        return view('clientes.edit',compact('cliente','paises'));
+        return view('clientes.edit', compact('cliente', 'paises'));
     }
 
     /**

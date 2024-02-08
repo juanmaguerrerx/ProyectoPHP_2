@@ -29,7 +29,7 @@
                     <select name="cif_cliente" id="cif_cliente" class="form-control">
                         {{-- CIF CLIENTES --}}
                         @foreach ($clientes as $cliente)
-                            <option value="{{ $cliente['id'] }}">{{$cliente['nombre']}}</option>
+                            <option value="{{ $cliente['id'] }}">{{ $cliente['nombre'] }}</option>
                         @endforeach
                     </select>
                 </div>

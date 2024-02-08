@@ -10,7 +10,6 @@
     @section('nombre_tabla') Incidencias @endsection
 @section('thead')
     <style>
-        
         thead {
             font-size: small;
         }
@@ -18,7 +17,8 @@
         tbody {
             font-size: small;
         }
-        .botones{
+
+        .botones {
             display: inline-flex;
         }
     </style>
@@ -73,8 +73,7 @@
             <td>{{ $incidencia['correo'] }}</td>
             <td>{{ $incidencia['provincia'] }}</td>
             <td>{{ $incidencia['dni_empleado'] }}</td>
-            <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i
-                        class="{{ $icon }}"></i></span></td>
+            <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i class="{{ $icon }}"></i></span></td>
             <td>{{ $incidencia['fecha_creacion'] }}</td>
             <td>{{ $incidencia['fecha_realizacion'] }}</td>
             <td style="width: 150px">

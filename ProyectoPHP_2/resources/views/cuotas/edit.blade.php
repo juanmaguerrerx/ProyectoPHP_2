@@ -55,7 +55,8 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="concepto" class="form-label">Concepto:</label>
-                    <input type="text" class="form-control large-input" id="concepto" name="concepto" value="{{$cuota['concepto']}}">
+                    <input type="text" class="form-control large-input" id="concepto" name="concepto"
+                        value="{{ $cuota['concepto'] }}">
                     @error('concepto')
                         <p class="message">{{ $message }}</p>
                     @enderror
@@ -64,21 +65,24 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="fecha_emision" class="form-label">Fecha de Emisión:</label>
-                    <input type="date" class="form-control" id="fecha_emision" name="fecha_emision" value="{{$cuota['fecha_emision']}}">
+                    <input type="date" class="form-control" id="fecha_emision" name="fecha_emision"
+                        value="{{ $cuota['fecha_emision'] }}">
                     @error('fecha_emision')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="importe" class="form-label">Importe</label>
-                    <input type="text" class="form-control" id="importe" name="importe" value="{{$cuota['importe']}}">
+                    <input type="text" class="form-control" id="importe" name="importe"
+                        value="{{ $cuota['importe'] }}">
                     @error('importe')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md-12 mt-4 text-center">
                     <label for="pagada" class="form-label text-pagada">Pagada: (marcar si lo está):</label> &nbsp;&nbsp;
-                    <input type="checkbox" class="form-check-input check-lg" name="pagada" id="pagada" @if($cuota['pagada']==1) checked @endif>
+                    <input type="checkbox" class="form-check-input check-lg" name="pagada" id="pagada"
+                        @if ($cuota['pagada'] == 1) checked @endif>
                 </div>
             </div>
             {{-- fecha pago si está pagada --}}
@@ -86,7 +90,7 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="notas" class="form-label">Notas:</label>
-                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10">{{$cuota['notas']}}</textarea>
+                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10">{{ $cuota['notas'] }}</textarea>
                 </div>
             </div>
             <div class="row mb-3">

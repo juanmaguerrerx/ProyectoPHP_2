@@ -2,11 +2,12 @@
 @section('titulo', 'Empleados')
 @section('style')
     <style>
-        .O{
+        .O {
             background-color: rgb(14, 14, 60);
             color: rgb(210, 210, 255);
         }
-        .A{
+
+        .A {
             background-color: rgb(69, 61, 15);
             color: rgb(255, 243, 174);
         }
@@ -41,7 +42,7 @@
 
             $rol = 'O';
 
-            if($empleado['admin']==1){
+            if ($empleado['admin'] == 1) {
                 $rol = 'A';
             }
         @endphp
@@ -52,10 +53,10 @@
             <td>{{ $empleado['telefono'] }}</td>
             <td>{{ $empleado['direccion'] }}</td>
             <td>{{ $fecha_alta }}</td>
-            <td> <span class="{{$rol}}">{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</span></td>
+            <td> <span class="{{ $rol }}">{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</span></td>
             <td>
                 <abbr title="Editar">
-                    <a href="{{ route('empleados.edit',[$empleado->id]) }}">
+                    <a href="{{ route('empleados.edit', [$empleado->id]) }}">
                         <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>
