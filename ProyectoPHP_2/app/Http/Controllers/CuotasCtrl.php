@@ -55,8 +55,9 @@ class CuotasCtrl extends Controller
 
     public function factura(Cuotas $cuota)
     {
-
+        //Si está pagada que se descargue, sino, que vuelva a .index
         if($cuota['pagada']==1){
+
         $html = View::make('cuotas.factura', compact('cuota'))->render();
 
         // Crear una instancia de Dompdf con las opciones predeterminadas
