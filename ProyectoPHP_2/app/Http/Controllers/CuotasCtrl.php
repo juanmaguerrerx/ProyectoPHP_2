@@ -55,6 +55,8 @@ class CuotasCtrl extends Controller
 
     public function factura(Cuotas $cuota)
     {
+
+        if($cuota['pagada']==1){
         $html = View::make('cuotas.factura', compact('cuota'))->render();
 
         // Crear una instancia de Dompdf con las opciones predeterminadas
@@ -70,6 +72,7 @@ class CuotasCtrl extends Controller
 
         // Descargar el archivo PDF con un nombre específico
         $dompdf->stream('FacturaNSC_' . $cuota['cif_cliente'] . '_' . $cuota['fecha_pago'] . '.pdf', ['Attachment' => true]);
+        }else return redirect('/cuotas');
     }
 
     /**
