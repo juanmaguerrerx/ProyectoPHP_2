@@ -25,7 +25,7 @@
             <h2 class="text-center mb-4 text-white">Datos Incidencia</h2>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="" class="form-label">CIF:</label>
+                    <label for="cif_cliente" class="form-label">CIF:</label>
                     <select name="cif_cliente" id="cif_cliente" class="form-control">
                         {{-- CIF CLIENTES --}}
                         @foreach ($clientes as $cliente)
@@ -36,44 +36,44 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="" class="form-label">Nombre Cliente:</label>
-                    <input type="text" class="form-control">
+                    <label for="persona_contacto" class="form-label">Nombre Cliente:</label>
+                    <input type="text" name="persona_contacto" id="persona_contacto" class="form-control">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="" class="form-label">Telefono Cliente:</label>
-                    <input type="text" class="form-control">
+                    <label for="telefono_contacto" class="form-label">Telefono Cliente:</label>
+                    <input type="text" name="telefono_contacto" id="telefono_contacto" class="form-control">
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="form-label">Correo Cliente:</label>
-                    <input type="text" class="form-control">
+                    <label for="correo" class="form-label">Correo Cliente:</label>
+                    <input type="text" name="correo" id="correo" class="form-control">
                 </div>
                 <div class="col-md-12 mt-4">
-                    <label for="" class="form-label">Descripción:</label>
-                    <textarea class="form-control txt" cols="10" rows="5"></textarea>
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                    <textarea class="form-control txt" name="descripcion" id="descripcion" cols="10" rows="5"></textarea>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="" class="form-label">Direccion:</label>
-                    <input type="text" class="form-control">
+                    <label for="direccion" class="form-label">Direccion:</label>
+                    <input type="text" name="direccion" id="direccion" class="form-control">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="" class="form-label">Población:</label>
-                    <input type="text" class="form-control">
+                    <label for="poblacion" class="form-label">Población:</label>
+                    <input type="text" name="poblacion" id="poblacion" class="form-control">
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="form-label">Código Postal:</label>
-                    <input type="text" class="form-control">
+                    <label for="codigo_postal" class="form-label">Código Postal:</label>
+                    <input type="text" name="codigo_postal" id="codigo_postal" class="form-control">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="" class="form-label">Provincia:</label>
-                    <select class="form-control">
+                    <label for="provincia" class="form-label">Provincia:</label>
+                    <select class="form-control" name="provincia" id="provincia">
                         @foreach ($provincias as $provincia)
                             <option value="{{ $provincia['cod'] }}">
                                 {{ $provincia['nombre'] }}
@@ -81,8 +81,8 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="form-label">Estado:</label>
-                    <select class="form-control">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select class="form-control" name="estado" id="estado">
                         <option value="P">En Proceso</option>
                         <option value="R">Realizada</option>
                         <option value="E">Esparando Aprobación</option>
@@ -92,20 +92,20 @@
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="" class="form-label">Fecha Creación:</label>
-                    <input type="date" class="form-control">
+                    <label for="fecha_creacion" class="form-label">Fecha Creación:</label>
+                    <input type="date" class="form-control" name="fecha_creacion" id="fecha_creacion">
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="form-label">Fecha Realización:</label>
-                    <input type="date" class="form-control">
+                    <label for="fecha_realizacion" class="form-label">Fecha Realización:</label>
+                    <input type="date" class="form-control" name="fecha_realizacion">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <label for="" class="form-label">Empleado Encargado:</label>
-                    <select class="form-control">
+                    <label for="dni_empleado" class="form-label">Empleado Encargado:</label>
+                    <select class="form-control" name="dni_empleado" id="dni_empleado">
                         @foreach ($empleados as $empleado)
-                            <option value="{{ $empleado['id'] }}">{{ $empleado['nombre_empleado'] }}</option>
+                            <option value="{{ $empleado['dni_empleado'] }}">{{ $empleado['nombre_empleado'] }}</option>
                         @endforeach
                     </select>
                 </div>
