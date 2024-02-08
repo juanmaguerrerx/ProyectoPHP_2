@@ -26,8 +26,11 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="" class="form-label">CIF:</label>
-                    <input type="text" class="form-control"
-                        value="{{ $incidencia['cif_cliente'] ? $incidencia['cif_cliente'] : '' }}">
+                    <select class="form-control">
+                        @foreach($clientes as $cliente)
+                            <option value="{{$cliente['cif']}}">{{$cliente['nombre']}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row mb-3">

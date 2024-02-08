@@ -6,6 +6,7 @@ use App\Models\Empleados;
 use App\Models\Incidencias;
 use Illuminate\Http\Request;
 use App\Models\TblProvincias;
+use App\Models\Clientes;
 
 class IncidenciasCtrl extends Controller
 {
@@ -29,8 +30,13 @@ class IncidenciasCtrl extends Controller
      */
     public function create()
     {
-        //
-        return view('incidencias.create');
+        $provincias = new TblProvincias;
+        $provincias = $provincias->all();
+        $empleados = new Empleados;
+        $empleados = $empleados->all();
+        $clientes = new Clientes;
+        $clientes = $clientes->all();
+        return view('incidencias.create', compact('provincias', 'empleados','clientes'));
     }
 
     /**
@@ -64,7 +70,9 @@ class IncidenciasCtrl extends Controller
         $provincias = $provincias->all();
         $empleados = new Empleados;
         $empleados = $empleados->all();
-        return view('incidencias.edit',compact('incidencia','provincias','empleados'));
+        $clientes = new Clientes;
+        $clientes = $clientes->all();
+        return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados','clientes'));
     }
 
     /**
