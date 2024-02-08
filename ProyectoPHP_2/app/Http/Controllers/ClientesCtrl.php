@@ -42,7 +42,7 @@ class ClientesCtrl extends Controller
         $request->validate([
             'cif' => ['required', new CIFValidation],
             'nombre' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|numeric|digits:10',
             'correo' => 'required|email',
             'cuenta_corriente' => 'required',
             'importe_mensual' => 'nullable|numeric',
