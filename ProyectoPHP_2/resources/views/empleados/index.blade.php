@@ -17,7 +17,7 @@
 @include('navbar')
 @section('content')
     @extends('tabla')
-    @section('nombre_tabla')Operarios @endsection
+    @section('nombre_tabla')Empleados @endsection
 @section('thead')
     <tr>
         <th>DNI</th>
