@@ -49,6 +49,18 @@ class ClientesCtrl extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Clientes $cliente)
+    {
+        //
+        $paisesMod = new Paises;
+        $paises = $paisesMod->getPaises();
+        // dd($cliente);
+        return view('clientes.edit',compact('cliente','paises'));
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(Clientes $clientes)
@@ -56,14 +68,6 @@ class ClientesCtrl extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Clientes $clientes)
-    {
-        //
-        return view('clientes.edit');
-    }
 
     /**
      * Update the specified resource in storage.

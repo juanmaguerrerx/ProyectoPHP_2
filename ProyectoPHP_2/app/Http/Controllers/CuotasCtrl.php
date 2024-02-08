@@ -46,6 +46,7 @@ class CuotasCtrl extends Controller
     public function show(Cuotas $cuota)
     {
         //
+        return view('cuotas.factura',compact('cuota'));
     }
 
     /**
@@ -54,7 +55,8 @@ class CuotasCtrl extends Controller
     public function edit(Cuotas $cuota)
     {
         //
-        return view('cuotas.edit');
+        $clientes = Clientes::select('cif', 'nombre')->get();
+        return view('cuotas.edit',compact('cuota','clientes'));
     }
 
     /**

@@ -64,7 +64,7 @@
                 </abbr>
                 @if ($cuota['pagada'] == 1)
                     <abbr title="Descargar">
-                        <a href=""><button class="btn btn-outline pur bb"><i class="bi bi-download"></i></button></a>
+                        <a href="{{route('cuotas.show',[$cuota->id])}}"><button class="btn btn-outline pur bb"><i class="bi bi-download"></i></button></a>
                     </abbr>
                 @endif
             </td>

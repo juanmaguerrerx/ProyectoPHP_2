@@ -53,10 +53,10 @@ class EmpleadosCtrl extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Empleados $empleados)
+    public function edit(Empleados $empleado)
     {
         //
-        return view('empleados.edit');
+        return view('empleados.edit',compact('empleado'));
     }
 
     /**
