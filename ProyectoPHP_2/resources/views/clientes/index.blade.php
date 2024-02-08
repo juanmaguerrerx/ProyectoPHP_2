@@ -16,7 +16,7 @@
     <th scope="col">Cuenta Corriente</th>
     <th scope="col">País</th>
     <th scope="col">Importe Mensual</th>
-    <th scope="col"><strong>Opciones</strong></th>
+    <th scope="col" class="op"><strong>Opciones</strong></th>
 @endsection
 @section('tbody')
     @foreach ($clientes as $cliente)
