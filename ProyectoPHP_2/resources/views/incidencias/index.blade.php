@@ -10,17 +10,18 @@
     @section('nombre_tabla') Incidencias @endsection
 @section('thead')
     <style>
+        
         thead {
-            font-size: smaller;
+            font-size: small;
         }
 
         tbody {
             font-size: small;
         }
-
-        
+        .botones{
+            display: inline-flex;
+        }
     </style>
-    <th>CIF</th>
     <th>Nombre</th>
     <th>Telefono</th>
     <th>Descripción</th>
@@ -65,32 +66,30 @@
                     break;
             }
         @endphp
-        <tr class="{{ $incidencia['estado'] }}">
-            <td>{{ $incidencia['cif_cliente'] }}</td>
+        <tr>
             <td>{{ $incidencia['persona_contacto'] }}</td>
             <td>{{ $incidencia['telefono_contacto'] }}</td>
             <td>{{ $incidencia['descripcion'] }}</td>
             <td>{{ $incidencia['correo'] }}</td>
             <td>{{ $incidencia['provincia'] }}</td>
             <td>{{ $incidencia['dni_empleado'] }}</td>
-            <td class="{{ $incidencia['estado'] }}">{{ $estado }} <i class="{{ $icon }}"></i></td>
+            <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i
+                        class="{{ $icon }}"></i></span></td>
             <td>{{ $incidencia['fecha_creacion'] }}</td>
             <td>{{ $incidencia['fecha_realizacion'] }}</td>
-            <td>
+            <td style="width: 150px">
                 <abbr title="Editar">
-                    <a href="{{route('incidencias.edit')}}">
-                        <button class="btn btn-outline-warning ww bb"><i class="bi bi-pencil-square"></i></button>
+                    <a href="{{ route('incidencias.edit', [$incidencia->id]) }}">
+                        <button class="btn btn-outline-warning bb btn-sm"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>
-                <br>
                 <abbr title="Eliminar">
-                    <a href=""><button class="btn btn-danger ww bb"><i class="bi bi-trash"></i></button>
+                    <a href=""><button class="btn btn-danger bb btn-sm"><i class="bi bi-trash"></i></button>
                     </a>
                 </abbr>
-                <br>
                 <abbr title="Ver">
-                    <a href="{{ route('incidencias.show') }}">
-                        <button class="btn btn-secondary ww bb"><i class="bi bi-search"></i></button>
+                    <a href="{{ route('incidencias.show', [$incidencia->id]) }}">
+                        <button class="btn btn-secondary bb btn-sm"><i class="bi bi-search"></i></button>
                     </a>
                 </abbr>
             </td>

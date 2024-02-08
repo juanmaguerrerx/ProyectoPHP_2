@@ -1,5 +1,5 @@
 @extends('../layout')
-@section('titulo', 'Dar de Alta Cliente')
+@section('titulo', 'Dar de Alta - Cliente')
 @section('style')
     <style>
 
@@ -7,6 +7,9 @@
 @endsection
 @include('navbar')
 @section('content')
+    <div class="link_atras">
+        <a href="{{ route('clientes.index') }}"> &#60; Volver</a>
+    </div>
     <div class="form-container fm marginTopTabla">
         <h2 class="text-center mb-4 text-white">Datos del Cliente</h2>
         <form method="POST" action="{{ route('clientes.store') }}">

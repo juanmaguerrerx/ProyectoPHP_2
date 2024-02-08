@@ -52,7 +52,7 @@
                     <a class="nav-link text-white" href="{{route('incidencias.index')}}">Incidencias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cuotas.index') }}">Facturas</a>
+                    <a class="nav-link text-white" href="{{ route('cuotas.index') }}">Cuotas</a>
                 </li>
             </ul>
 

@@ -1,5 +1,5 @@
 @extends('../layout')
-@section('titulo', 'Operarios')
+@section('titulo', 'Empleados')
 @section('style')
     <style>
 
@@ -42,7 +42,7 @@
             <td>{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</td>
             <td>
                 <abbr title="Editar">
-                    <a href="{{ route('empleados.edit') }}">
+                    <a href="{{ route('empleados.edit',[$empleado->id]) }}">
                         <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>

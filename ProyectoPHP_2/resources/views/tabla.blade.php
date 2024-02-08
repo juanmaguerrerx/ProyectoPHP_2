@@ -50,7 +50,7 @@
     }
 
     thead tr {
-        background-color: rgba(254, 255, 211, 0.5);
+        background-color: rgba(255, 255, 255, 0.415);
     }
 
     .custom-table thead tr,
@@ -88,11 +88,12 @@
 
     .custom-table tbody tr th,
     .custom-table tbody tr td {
-        background: #2b2b25;
+        background: #0f0f0f;
         border: none;
         -webkit-transition: .3s all ease;
         -o-transition: .3s all ease;
         transition: .3s all ease;
+        
     }
 
     .custom-table tbody tr th a,
@@ -124,7 +125,7 @@
     .custom-table tbody tr:hover th,
     .custom-table tbody tr:hover td {
         color: #fff;
-        background: #36362e;
+        background: #1a1a1a;
     }
 
     .custom-table tbody tr.active th a,
@@ -156,7 +157,7 @@
         height: 20px;
         width: 20px;
         border-radius: 4px;
-        border: 2px solid #47463f;
+        border: 2px solid #464646;
         background: transparent;
     }
 

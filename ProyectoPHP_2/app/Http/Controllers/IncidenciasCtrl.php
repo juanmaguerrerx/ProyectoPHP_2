@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleados;
 use App\Models\Incidencias;
 use Illuminate\Http\Request;
 use App\Models\TblProvincias;
@@ -15,7 +16,9 @@ class IncidenciasCtrl extends Controller
     {
         $incidencias = Incidencias::all();
         $provincias = new TblProvincias;
+        $empleados = new Empleados;
         foreach ($incidencias as $incidencia) {
+            $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
             $incidencia['provincia'] = $provincias->getProvincia($incidencia['provincia']);
         }
         return view('incidencias.index', compact('incidencias'));
@@ -44,7 +47,11 @@ class IncidenciasCtrl extends Controller
     public function show(Incidencias $incidencia)
     {
         //
-        return view('incidencias.show');
+        $empleados = new Empleados;
+        $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
+        $provincias = new TblProvincias;
+        $incidenia['provincia'] = $provincias->getProvincia($incidencia['id']);
+        return view('incidencias.show', compact('incidencia'));
     }
 
     /**
@@ -53,6 +60,11 @@ class IncidenciasCtrl extends Controller
     public function edit(Incidencias $incidencia)
     {
         //
+        $provincias = new TblProvincias;
+        $provincias = $provincias->all();
+        $empleados = new Empleados;
+        $empleados = $empleados->all();
+        return view('incidencias.edit',compact('incidencia','provincias','empleados'));
     }
 
     /**

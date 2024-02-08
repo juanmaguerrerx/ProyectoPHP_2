@@ -3,6 +3,7 @@
 @section('titulo', 'Cuotas')
 
 
+
 <header>@include('navbar')</header>
 
 @section('content')
@@ -22,6 +23,11 @@
 
     @foreach ($cuotas as $cuota)
         @php
+            $clase_pagada = '';
+            if ($cuota['pagada'] == 1) {
+                $clase_pagada = 'pagada';
+            }
+
             $cuota['fecha_emision'] = new DateTime($cuota['fecha_emision']);
             $fecha_emision = $cuota['fecha_emision']->format('d/m/Y');
             if ($cuota['fecha_pago'] !== null) {
@@ -31,11 +37,11 @@
                 $fecha_pago = null;
             }
         @endphp
-        <tr>
+        <tr class="{{$clase_pagada}}">
             <td>{{ $cuota['cif_cliente'] }}</td>
             <td>{{ $cuota['concepto'] }}</td>
             <td>{{ $fecha_emision }}</td>
-            <td>{{ $cuota['importe'] }}</td>
+            <td>{{ $cuota['importe'] }}€</td>
             <td>
                 @if ($cuota['pagada'] == 1)
                     Si
@@ -47,7 +53,7 @@
             <td>{{ $cuota['notas'] }}</td>
             <td>
                 <abbr title="Editar">
-                    <a href="{{ route('cuotas.edit') }}">
+                    <a href="{{ route('cuotas.edit', [$cuota->id]) }}">
                         <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>

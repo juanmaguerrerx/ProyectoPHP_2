@@ -19,7 +19,7 @@
     <style>
         body {
 
-            background-color: rgb(39, 38, 0);
+            background-color: rgb(18, 18, 18);
         }
     </style>
     @yield('style')

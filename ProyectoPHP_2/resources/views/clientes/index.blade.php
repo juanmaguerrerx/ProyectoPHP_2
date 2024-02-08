@@ -30,7 +30,7 @@
             <td>{{ $cliente['importe_mensual'] }}</td>
             <td>
                 <abbr title="Editar">
-                    <a href="{{route('clientes.edit')}}">
+                    <a href="{{route('clientes.edit', [$cliente->id])}}">
                         <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>

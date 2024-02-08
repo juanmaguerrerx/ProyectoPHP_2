@@ -62,6 +62,7 @@ class ClientesCtrl extends Controller
     public function edit(Clientes $clientes)
     {
         //
+        return view('clientes.edit');
     }
 
     /**

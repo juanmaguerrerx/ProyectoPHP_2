@@ -1,5 +1,5 @@
 @extends('../layout')
-@section('titulo', 'Dar de Alta Cliente')
+@section('titulo', 'Crear Cuota')
 @section('style')
     <style>
         .custom-select {
@@ -31,6 +31,9 @@
 @endsection
 @include('navbar')
 @section('content')
+<div class="link_atras">
+    <a href="{{ route('cuotas.index') }}"> &#60; Volver</a>
+</div>
     <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4 text-white">Datos Cuota</h2>
         <form class="form-floating" method="POST" action="{{ route('cuotas.store') }}">

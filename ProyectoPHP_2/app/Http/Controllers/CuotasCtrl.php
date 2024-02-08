@@ -14,7 +14,7 @@ class CuotasCtrl extends Controller
     public function index()
     {
         $cuotas = Cuotas::all();
-        return view('cuotas.index', compact('cuotas'));
+        return view('cuotas.index', ['cuotas'=>$cuotas]);
     }
 
     /**
@@ -54,6 +54,7 @@ class CuotasCtrl extends Controller
     public function edit(Cuotas $cuota)
     {
         //
+        return view('cuotas.edit');
     }
 
     /**
@@ -64,6 +65,7 @@ class CuotasCtrl extends Controller
         //
     }
 
+    
     /**
      * Remove the specified resource from storage.
      */
