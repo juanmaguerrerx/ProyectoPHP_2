@@ -2,7 +2,14 @@
 @section('titulo', 'Empleados')
 @section('style')
     <style>
-
+        .O{
+            background-color: rgb(14, 14, 60);
+            color: rgb(210, 210, 255);
+        }
+        .A{
+            background-color: rgb(69, 61, 15);
+            color: rgb(255, 243, 174);
+        }
     </style>
 @endsection
 
@@ -31,6 +38,12 @@
             } else {
                 $fecha_alta = '~';
             }
+
+            $rol = 'O';
+
+            if($empleado['admin']==1){
+                $rol = 'A';
+            }
         @endphp
         <tr>
             <td>{{ $empleado['dni'] }}</td>
@@ -39,7 +52,7 @@
             <td>{{ $empleado['telefono'] }}</td>
             <td>{{ $empleado['direccion'] }}</td>
             <td>{{ $fecha_alta }}</td>
-            <td>{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</td>
+            <td> <span class="{{$rol}}">{{ $empleado['admin'] == 0 ? 'Operario' : 'Administrador' }}</span></td>
             <td>
                 <abbr title="Editar">
                     <a href="{{ route('empleados.edit',[$empleado->id]) }}">

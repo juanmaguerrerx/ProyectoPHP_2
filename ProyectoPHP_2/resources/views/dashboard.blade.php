@@ -3,7 +3,7 @@
 @section('style')
     <style>
         body {
-            background-color: rgb(57, 57, 57);
+            background-color: rgb(16, 16, 16);
         }
     </style>
 @endsection
