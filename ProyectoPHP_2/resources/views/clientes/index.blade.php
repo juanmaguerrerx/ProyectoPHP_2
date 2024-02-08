@@ -26,11 +26,12 @@
             <td>{{ $cliente['telefono'] }}</td>
             <td>{{ $cliente['correo'] }}</td>
             <td>{{ $cliente['cuenta_corriente'] }}</td>
-            <td>{{ $cliente['pais_id'] }}</td>
-            <td>{{ $cliente['importe_mensual'] }}</td>
+            <td>{{ $cliente['pais_id'] }} <img src="./images/country-flags-main/svg/{{ $cliente['pais_iso2']}}.svg"
+                    alt="{{ $cliente['pais_iso2'] }}" class="bandera"></td>
+            <td>{{ $cliente['importe_mensual'] }}€</td>
             <td>
                 <abbr title="Editar">
-                    <a href="{{route('clientes.edit', [$cliente->id])}}">
+                    <a href="{{ route('clientes.edit', [$cliente->id]) }}">
                         <button class="btn btn-outline-warning bb"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>

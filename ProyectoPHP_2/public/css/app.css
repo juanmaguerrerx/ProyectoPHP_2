@@ -193,3 +193,8 @@ span i{
 .pagada td{
     background-color: rgba(71, 91, 71, 0.418) !important;
 }
+
+.bandera{
+    height: 15px;
+    width: 30px;
+}
