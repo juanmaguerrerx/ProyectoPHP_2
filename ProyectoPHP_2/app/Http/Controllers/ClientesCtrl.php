@@ -14,7 +14,7 @@ class ClientesCtrl extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::all();
+        $clientes = Clientes::paginate(2);
         foreach ($clientes as $cliente) {
             $paisesMod = new Paises;
             $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);
@@ -42,7 +42,7 @@ class ClientesCtrl extends Controller
         $request->validate([
             'cif' => ['required', new CIFValidation],
             'nombre' => 'required',
-            'telefono' => 'required|numeric|digits:10',
+            'telefono' => 'required|numeric|digits:9',
             'correo' => 'required|email',
             'cuenta_corriente' => 'required',
             'importe_mensual' => 'nullable|numeric',

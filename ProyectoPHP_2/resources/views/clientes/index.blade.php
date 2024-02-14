@@ -2,6 +2,21 @@
 
 @section('titulo', 'Clientes')
 
+@section('style')
+    <style>
+        table {
+            font-size: small;
+        }
+        .d{
+            font-size: small;
+            display: flex;
+        }
+        .d > span{
+            background-color:black;
+            color: white; 
+        }
+    </style>
+@endsection
 
 <header>@include('navbar')</header>
 
@@ -50,4 +65,9 @@
         </button>
     </a>
 </abbr>
+<div class="row">
+    <div class="col-12-lg text-center justify-content-center d">
+        {{$clientes->links()}}
+    </div>
+</div>
 @endsection
