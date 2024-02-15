@@ -14,7 +14,7 @@ class ClientesCtrl extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::paginate(2);
+        $clientes = Clientes::paginate(3);
         foreach ($clientes as $cliente) {
             $paisesMod = new Paises;
             $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);

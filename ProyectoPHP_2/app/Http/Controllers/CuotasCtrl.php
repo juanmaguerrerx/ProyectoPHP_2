@@ -18,6 +18,7 @@ class CuotasCtrl extends Controller
     public function index()
     {
         $cuotas = Cuotas::all();
+        // dd($cuotas);
         return view('cuotas.index', ['cuotas' => $cuotas]);
     }
 

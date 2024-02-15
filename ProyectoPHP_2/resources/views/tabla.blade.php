@@ -1,7 +1,3 @@
-<style>
-
-
-</style>
 
 <div class="container">
     <h2 class="marginTopTabla text-center pt-5">@yield('nombre_tabla')</h2>
@@ -20,3 +16,4 @@
             </tbody>
         </table>
     </div>
+</div>

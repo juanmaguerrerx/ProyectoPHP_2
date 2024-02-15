@@ -7,14 +7,18 @@
         table {
             font-size: small;
         }
-        .d{
+
+        .d {
             font-size: small;
             display: flex;
         }
-        .d > span{
-            background-color:black;
-            color: white; 
+        .pagination{
+           display: flex;
+           justify-content: center;
+           
         }
+        
+        
     </style>
 @endsection
 
@@ -57,7 +61,14 @@
             </td>
         </tr>
     @endforeach
+
 @endsection
+<div class="row mt-5">
+    <div class="col-12">
+        {{ $clientes->links() }}
+    </div>
+</div>
+
 <abbr title="Añadir">
     <a href="{{ route('clientes.create') }}">
         <button class="btn btn-outline-secondary ww btn-lg text-white fixed-button border-white"><i
@@ -65,9 +76,5 @@
         </button>
     </a>
 </abbr>
-<div class="row">
-    <div class="col-12-lg text-center justify-content-center d">
-        {{$clientes->links()}}
-    </div>
-</div>
+
 @endsection

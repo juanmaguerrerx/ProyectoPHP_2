@@ -41,6 +41,7 @@
             <td>{{ $cuota['cif_cliente'] }}</td>
             <td>{{ $cuota['concepto'] }}</td>
             <td>{{ $fecha_emision }}</td>
+            {{-- {{dd($cuota['importe'])}} --}}
             <td>{{ $cuota['importe'] }}€</td>
             <td>
                 @if ($cuota['pagada'] == 1)
