@@ -15,7 +15,7 @@ class IncidenciasCtrl extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencias::all();
+        $incidencias = Incidencias::paginate(5);
         $provincias = new TblProvincias;
         $empleados = new Empleados;
         foreach ($incidencias as $incidencia) {

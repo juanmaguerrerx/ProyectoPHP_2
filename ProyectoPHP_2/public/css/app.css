@@ -422,6 +422,29 @@ thead tr {
 }
 
 
-    
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    background-color: none;
+}
+
+.page-link,
+.page-item.disabled .page-link {
+    background-color: #111111;
+    border: none;
+}
+
+.page-link:hover {
+    background-color: #4d4d4d7e;
+    border: none;
+}
+
+.page-item.active .page-link {
+    background-color: #676767;
+}
+
 
 /**HAY QUE CAMBIAR LA TABLA PARA QUE EN CLIENTES NO SE PONGA SCROLL*/

@@ -95,6 +95,13 @@
         </tr>
     @endforeach
 @endsection
+
+<div class="row mt-2">
+    <div class="col-12">
+        {{ $incidencias->links() }}
+    </div>
+</div>
+
 <abbr title="Añadir">
     <a href="{{ route('incidencias.create') }}">
         <button class="btn btn-outline-secondary btn-lg ww fixed-button text-white border-white"><i

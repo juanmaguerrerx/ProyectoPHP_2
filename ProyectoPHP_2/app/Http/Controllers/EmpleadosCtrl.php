@@ -12,7 +12,7 @@ class EmpleadosCtrl extends Controller
      */
     public function index()
     {
-        $empleados = Empleados::all();
+        $empleados = Empleados::paginate(5);
         // dd($empleados);
         return view('empleados.index', compact('empleados'));
     }

@@ -73,6 +73,13 @@
         </tr>
     @endforeach
 @endsection
+
+<div class="row mt-2">
+    <div class="col-12">
+        {{ $cuotas->links() }}
+    </div>
+</div>
+
 <abbr title="Añadir">
     <a href="{{ route('cuotas.create') }}">
         <button class="btn btn-outline-secondary btn-lg fixed-button ww text-white border-white"><i
