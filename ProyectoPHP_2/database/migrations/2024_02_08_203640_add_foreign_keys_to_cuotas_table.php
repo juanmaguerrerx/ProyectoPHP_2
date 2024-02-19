@@ -13,9 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('cuotas', function (Blueprint $table) {
-            $table->foreign(['cif_cliente'], 'cuotas_ibfk_1')->references(['cif'])->on('clientes');
-        });
+       
     }
 
     /**
@@ -25,8 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('cuotas', function (Blueprint $table) {
-            $table->dropForeign('cuotas_ibfk_1');
-        });
+        
     }
 };

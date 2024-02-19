@@ -62,7 +62,7 @@ class ClientesCtrl extends Controller
         // Guardar el cliente en la base de datos
         $cliente->save();
 
-        // Puedes retornar una respuesta adecuada aquí, por ejemplo, redirigir a una vista de éxito
+        
         return redirect()->route('clientes.index')->with('success', 'Cliente añadido correctamente');
     }
 

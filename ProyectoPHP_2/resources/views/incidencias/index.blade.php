@@ -5,6 +5,13 @@
 
 <header>@include('navbar')</header>
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show text-center mt-6" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 @section('content')
     @extends('../tabla')
     @section('nombre_tabla') Incidencias @endsection
