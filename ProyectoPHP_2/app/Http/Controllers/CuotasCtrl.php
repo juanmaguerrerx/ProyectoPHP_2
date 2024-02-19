@@ -79,7 +79,6 @@ class CuotasCtrl extends Controller
 
             // Cargar el HTML en Dompdf
             $dompdf->loadHtml($html);
-
             // Renderizar el HTML en PDF
             $dompdf->render();
 

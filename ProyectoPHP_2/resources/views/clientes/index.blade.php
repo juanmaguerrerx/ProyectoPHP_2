@@ -71,6 +71,7 @@
 @endsection
 <div class="row mt-2">
     <div class="col-12">
+        
         {{ $clientes->links() }}
     </div>
 </div>

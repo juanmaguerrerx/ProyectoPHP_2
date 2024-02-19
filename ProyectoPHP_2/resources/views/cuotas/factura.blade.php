@@ -46,6 +46,32 @@
             width: 100px;
             height: 35px;
         }
+
+        .signature {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-text {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            color: black;
+            font-size: large;
+            font-weight: bold;  
+            padding: 5px;
+            opacity: 50%;
+        }
+
+
+        .sello {
+            opacity: 55%;
+        }
     </style>
 </head>
 
@@ -78,6 +104,14 @@
                 <td id="notas">{{ $cuota['notas'] }}</td>
             </tr>
         </table>
+        <div style="text-align: center">
+            <p>Factura numero: {{ $cuota['id'] }}</p>
+            <p>Fecha: {{ now()->format('Y-m-d H:i:s') }}</p>
+        </div>
+        <div class="signature">
+            <p>__________________________</p>
+            <p>Firma/Sello</p>
+        </div>
     </div>
 </body>
 
