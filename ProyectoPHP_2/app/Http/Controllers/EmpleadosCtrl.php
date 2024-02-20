@@ -36,10 +36,26 @@ class EmpleadosCtrl extends Controller
             'dni' => 'required',
             'nombre' => 'required',
             'correo' => 'required|email',
-            'telefono' => 'required|numeric|digits:10',
+            'telefono' => 'required|numeric|digits:9',
             'fecha_alta' => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
             'direccion' => 'required',
         ]);
+
+        // Si la validación pasa, crear un nuevo cliente
+        $empleado = new Empleados();
+        $empleado->dni = $request->dni;
+        $empleado->nombre_empleado = $request->nombre;
+        $empleado->telefono = $request->telefono;
+        $empleado->correo = $request->correo;
+        $empleado->direccion = $request->direccion;
+        $empleado->fecha_alta = $request->fecha_alta;
+        $empleado->admin = $request->rol;
+
+        // Guardar el cliente en la base de datos
+        $empleado->save();
+
+        
+        return redirect()->route('empleados.index')->with('success', 'Empleado añadido correctamente');
     }
 
     /**

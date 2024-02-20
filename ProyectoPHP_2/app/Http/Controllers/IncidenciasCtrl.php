@@ -44,7 +44,19 @@ class IncidenciasCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "cif_cliente" => "required",
+            "descripcion" => "required",
+            "direccion" => "required",
+            "poblacion" => "required",
+            "codigo_postal" => "required",
+            "provincia" => "required",
+            "estado" => "required",
+            "fecha_creacion" => "required",
+            "dni_empleado" => "required",
+            "fecha_realizacion" => "required|date|between:".now()->format('d-m-Y').$request->fecha_creacion,
+            "anotaciones_anteriores" => "required",
+        ]);
     }
 
     /**

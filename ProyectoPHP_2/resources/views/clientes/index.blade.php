@@ -61,8 +61,8 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                    <a href=""><button class="btn btn-danger bb"><i class="bi bi-trash"></i></button>
-                    </a>
+                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
+                            class="bi bi-trash"></i></button>
                 </abbr>
             </td>
         </tr>
@@ -71,10 +71,12 @@
 @endsection
 <div class="row mt-2">
     <div class="col-12">
-        
         {{ $clientes->links() }}
     </div>
 </div>
+
+
+
 
 <abbr title="Añadir">
     <a href="{{ route('clientes.create') }}">
@@ -83,5 +85,41 @@
         </button>
     </a>
 </abbr>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content custom-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-x-circle-fill" style="color: white"></i> <!-- Icono de cierre -->
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar este cliente?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+
+        confirmDeleteButton.addEventListener('click', function() {
+            // Aquí puedes agregar la lógica para enviar la solicitud de eliminación
+            // Por ejemplo, puedes usar JavaScript para redirigir a la ruta de eliminación del cliente
+            // window.location.href = '{{ route('clientes.destroy', [$cliente->id]) }}';
+            // O puedes enviar una solicitud AJAX para eliminar el cliente sin recargar la página
+        });
+    });
+</script>
+
 
 @endsection

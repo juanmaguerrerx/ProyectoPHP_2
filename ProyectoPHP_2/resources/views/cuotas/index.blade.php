@@ -66,9 +66,7 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                    <a href="">
-                        <button class="btn btn-danger bb"><i class="bi bi-trash"></i></button>
-                    </a>
+                        <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>
                 </abbr>
                 @if ($cuota['pagada'] == 1)
                     <abbr title="Descargar">
@@ -94,4 +92,37 @@
         </button>
     </a>
 </abbr>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content custom-modal">
+            <div class="modal-header text-danger">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-x-circle-fill" style="color: white"></i> <!-- Icono de cierre -->
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar esta cuota?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+
+        confirmDeleteButton.addEventListener('click', function() {
+            
+        });
+    });
+</script>
+
 @endsection

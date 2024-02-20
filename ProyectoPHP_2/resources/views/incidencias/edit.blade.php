@@ -36,32 +36,6 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-md-12">
-                    <label for="persona_contacto" class="form-label">Nombre Cliente:</label>
-                    <input type="text" class="form-control" name="persona_contacto" id="persona_contacto"
-                        value="{{ $incidencia['persona_contacto'] ? $incidencia['persona_contacto'] : '' }}">
-                    @error('persona_contacto')
-                        <p class="message">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="telefono_contacto" class="form-label">Telefono Cliente:</label>
-                    <input type="text" class="form-control" name="telefono_contacto" id="telefono_contacto"
-                        value="{{ $incidencia['telefono_contacto'] ? $incidencia['telefono_contacto'] : '' }}">
-                    @error('telefono_contacto')
-                        <p class="message">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label for="correo" class="form-label">Correo Cliente:</label>
-                    <input type="text" class="form-control" name="correo" id="correo"
-                        value="{{ $incidencia['correo'] ? $incidencia['correo'] : '' }}">
-                    @error('correo')
-                        <p class="message">{{ $message }}</p>
-                    @enderror
-                </div>
                 <div class="col-md-12 mt-4">
                     <label for="descripcion" class="form-label">Descripción:</label>
                     <textarea class="form-control txt" cols="10" rows="5" name="descripcion" id="descripcion">{{ $incidencia['descripcion'] ? $incidencia['descripcion'] : '' }}</textarea>

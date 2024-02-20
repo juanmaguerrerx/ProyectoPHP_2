@@ -63,7 +63,7 @@
             left: 20%;
             color: black;
             font-size: large;
-            font-weight: bold;  
+            font-weight: bold;
             padding: 5px;
             opacity: 50%;
         }

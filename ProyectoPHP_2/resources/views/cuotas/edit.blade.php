@@ -85,7 +85,13 @@
                         @if ($cuota['pagada'] == 1) checked @endif>
                 </div>
             </div>
-            {{-- fecha pago si está pagada --}}
+
+            <div class="row mb-3" id="fecha_pago_field">
+                <div class="col-md-6">
+                    <label for="fecha_pago" class="form-label">Fecha de Pago:</label>
+                    <input type="date" class="form-control" id="fecha_pago" name="fecha_pago">
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <div class="col-md-12">
@@ -104,12 +110,27 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#').change(function() {
-                var selectedMoneda = $(this).find(':selected').data('moneda');
+            // Función para mostrar u ocultar el campo de fecha de pago con animación
+            function toggleFechaPago() {
+                // Obtener el estado del checkbox de "Pagada"
+                var pagadaChecked = $('#pagada').prop('checked');
+                // Obtener el campo de fecha de pago
+                var fechaPagoField = $('#fecha_pago_field');
 
-                $('#').prop('disabled', false);
+                // Mostrar u ocultar el campo de fecha de pago con animación
+                if (pagadaChecked) {
+                    fechaPagoField.slideDown(); // Mostrar campo de fecha de pago con animación
+                } else {
+                    fechaPagoField.slideUp(); // Ocultar campo de fecha de pago con animación
+                }
+            }
 
-                $('#').val(selectedMoneda);
+            // Llamar a la función al cargar la página
+            toggleFechaPago();
+
+            // Llamar a la función cuando el estado del checkbox cambie
+            $('#pagada').change(function() {
+                toggleFechaPago();
             });
         });
     </script>

@@ -446,5 +446,7 @@ thead tr {
     background-color: #676767;
 }
 
-
-/**HAY QUE CAMBIAR LA TABLA PARA QUE EN CLIENTES NO SE PONGA SCROLL*/
+.custom-modal{
+    background-color: rgba(0, 0, 0, 0.863) !important;
+    color: white;
+}
