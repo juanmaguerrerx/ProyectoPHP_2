@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Clientes extends Model
 {
     use HasFactory;
+
+    public function getCliente($cif)
+    {
+
+        $cliente = Clientes::where('cif', $cif)->first();
+        return $cliente;
+    }
 }

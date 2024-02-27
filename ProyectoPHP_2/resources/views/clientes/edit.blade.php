@@ -12,8 +12,9 @@
     </div>
     <div class="form-container fm marginTopTabla">
         <h2 class="text-center mb-4 text-white">Datos del Cliente</h2>
-        <form method="POST" action="{{ route('clientes.store') }}">
+        <form action="{{ route('clientes.update', [$cliente->id]) }}" method="POST">
             @csrf
+            @method('PATCH')
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cif" class="form-label">CIF:</label>
@@ -78,6 +79,7 @@
                 <div class="col-md-6">
                     <label for="moneda" class="form-label">Moneda:</label>
                     <select name="moneda" disabled class="form-control sel" id="moneda">
+                        <option value="">-Moneda-</option>
                         @foreach ($paises as $pais)
                             <option value="{{ $pais['iso_moneda'] }}">
                                 {{ $pais['nombre_moneda'] }}
@@ -101,6 +103,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
+            var selectedMoneda = $(this).find(':selected').data('moneda');
+                $('#moneda').val(selectedMoneda);
             $('#pais').change(function() {
                 var selectedMoneda = $(this).find(':selected').data('moneda');
                 $('#moneda').val(selectedMoneda);

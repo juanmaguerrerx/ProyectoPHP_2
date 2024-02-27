@@ -29,10 +29,8 @@
             display: inline-flex;
         }
     </style>
-    <th>Nombre</th>
-    <th>Telefono</th>
+    <th>CIF</th>
     <th>Descripción</th>
-    <th>Correo</th>
     <th>Provincia</th>
     <th>Operario</th>
     <th>Estado</th>
@@ -46,6 +44,7 @@
         @php
             $estado = '';
             $icon = '';
+            $fecha = $incidencia['fecha_realizacion'];
             switch ($incidencia['estado']) {
                 case 'P':
                     $estado = 'En Proceso';
@@ -72,17 +71,18 @@
                     $icono = '';
                     break;
             }
+            if ($incidencia['fecha_realizacion']==null || $incidencia['fecha_realizacion']=='0000-00-00' || $incidencia['estado']=='P'){
+                $fecha = '~';
+            }
         @endphp
         <tr>
-            <td>{{ $incidencia['persona_contacto'] }}</td>
-            <td>{{ $incidencia['telefono_contacto'] }}</td>
+            <td>{{ $incidencia['cif_cliente'] }}</td>
             <td>{{ $incidencia['descripcion'] }}</td>
-            <td>{{ $incidencia['correo'] }}</td>
             <td>{{ $incidencia['provincia'] }}</td>
             <td>{{ $incidencia['dni_empleado'] }}</td>
             <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i class="{{ $icon }}"></i></span></td>
             <td>{{ $incidencia['fecha_creacion'] }}</td>
-            <td>{{ $incidencia['fecha_realizacion'] }}</td>
+            <td>{{ $fecha }}</td>
             <td style="width: 150px">
                 <abbr title="Editar">
                     <a href="{{ route('incidencias.edit', [$incidencia->id]) }}">
@@ -90,7 +90,8 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                    <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>   
+                    <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
+                            class="bi bi-trash"></i></button>
                 </abbr>
                 <abbr title="Ver">
                     <a href="{{ route('incidencias.show', [$incidencia->id]) }}">
@@ -143,7 +144,7 @@
         const confirmDeleteButton = document.getElementById('confirmDeleteButton');
 
         confirmDeleteButton.addEventListener('click', function() {
-            
+
         });
     });
 </script>

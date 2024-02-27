@@ -90,9 +90,33 @@ class ClientesCtrl extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Clientes $clientes)
+    public function update(Request $request, Clientes $cliente)
     {
-        //
+        $request->validate([
+            'cif' => ['required', new CIFValidation],
+            'nombre' => 'required',
+            'telefono' => 'required|numeric|digits:9',
+            'correo' => 'required|email',
+            'cuenta_corriente' => 'required',
+            'importe_mensual' => 'nullable|numeric',
+            'pais' => 'required',
+        ]);
+
+        // Si la validación pasa, actualizar cliente
+        $cliente-> cif = $request->input('cif');
+        $cliente-> nombre = $request->input('nombre');
+        $cliente-> telefono = $request->input('telefono');
+        $cliente-> correo = $request->input('correo');
+        $cliente-> cuenta_corriente = $request->input('cuenta_corriente');
+        $cliente-> importe_mensual = $request->input('importe_mensual');
+        $cliente-> pais_id = $request->input('pais');
+
+
+        // Actualizar el cliente en la base de datos
+        $cliente->save();
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
+
     }
 
     /**

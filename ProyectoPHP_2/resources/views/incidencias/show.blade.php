@@ -114,10 +114,12 @@
                 <label for="" class="form-label">Fecha Creación:</label>
                 <div class="form-control">{{ $incidencia['fecha_creacion'] }}</div>
             </div>
+            @if($incidencia['fecha_realizacion'])
             <div class="col-md-6">
                 <label for="" class="form-label">Fecha Realización:</label>
                 <div class="form-control">{{ $incidencia['fecha_realizacion'] }}</div>
             </div>
+            @endif
         </div>
         <div class="row mb-3">
             <div class="col-md-12">

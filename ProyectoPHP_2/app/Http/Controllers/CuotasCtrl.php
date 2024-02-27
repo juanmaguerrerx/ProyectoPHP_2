@@ -8,8 +8,9 @@ use App\Rules\CIFValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Dompdf\Dompdf;
+use Illuminate\Support\Carbon;
 use Dompdf\Options;
-
+use FFI\CData;
 
 class CuotasCtrl extends Controller
 {
@@ -57,14 +58,6 @@ class CuotasCtrl extends Controller
         return redirect()->route('cuotas.index')->with('success', 'Cuota creada con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cuotas $cuota)
-    {
-        // return view('cuotas.factura', compact('cuota'));
-    }
-
     public function factura(Cuotas $cuota)
     {
         //Si está pagada que se descargue, sino, que vuelva a .index
@@ -103,6 +96,38 @@ class CuotasCtrl extends Controller
     public function update(Request $request, Cuotas $cuota)
     {
         //
+        $request->validate([
+            'concepto' => 'required',
+            'fecha_emision' => 'required',
+            'importe' => 'required|numeric',
+            'pagada' => 'nullable',
+            'fecha_pago' => 'nullable|date|after_or_equal:' . $request->fecha_emision,
+        ]);
+        // dd($request);
+
+        $pagada = 0;
+        $fecha = $request->fecha_pago;
+        if ($request->input('pagada') == 'on') {
+            $pagada = 1;
+            if($fecha = null || $fecha == '0000-00-00'|| $fecha==0 || $fecha = false){
+            $fecha = date('Y-m-d');
+            }else $fecha = $request->fecha_pago;
+        }
+
+        
+
+        // Si la validación pasa, actualizar cliente
+        $cuota->cif_cliente = $request->cif_cliente;
+        $cuota->concepto = $request->concepto;
+        $cuota->fecha_emision = $request->fecha_emision;
+        $cuota->importe = $request->importe;
+        $cuota->pagada = $pagada;
+        $cuota->fecha_pago = $fecha;
+        $cuota->notas = $request->notas;
+
+        // Actualizar el cliente en la base de datos
+        $cuota->save();
+        return redirect()->route('cuotas.index')->with('success', 'Cuota actualizada correctamente.');
     }
 
 

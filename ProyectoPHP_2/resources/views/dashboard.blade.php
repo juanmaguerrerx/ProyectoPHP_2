@@ -1,44 +1,17 @@
-@extends('layout')
-@section('titulo', 'Dashboard')
-@section('style')
-    <style>
-        body {
-            background-color: rgb(16, 16, 16);
-        }
-    </style>
-@endsection
-<header>@include('navbar')</header>
-@section('content')
-    <div class="text-center b text-white">
-        <h1>Hola, usuario</h1> {{-- nombre del usuario --}}
-        <h4>¿A dónde vamos?</h4>
-    </div>
-    <div class="card-container">
-        <div class="card cl">
-            <a href="{{ route('clientes.index') }}" class="card-link">
-                <div class="card-title">Clientes</div>
-            </a>
-        </div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-        <div class="card">
-            <a href="{{ route('empleados.index') }}" class="card-link">
-                <div class="card-title">Empleados</div>
-            </a>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="card-container">
-        <div class="card in">
-            <a href="{{ route('incidencias.index') }}" class="card-link">
-                <div class="card-title">Incidencias</div>
-            </a>
-        </div>
-
-        <div class="card fa">
-            <a href="{{ route('cuotas.index') }}" class="card-link">
-                <div class="card-title">Facturas/Cuotas</div>
-            </a>
-        </div>
-
-    </div>
-@endsection
+</x-app-layout>

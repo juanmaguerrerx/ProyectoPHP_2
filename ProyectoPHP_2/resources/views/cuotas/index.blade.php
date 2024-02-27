@@ -3,7 +3,6 @@
 @section('titulo', 'Cuotas')
 
 
-
 <header>@include('navbar')</header>
 
 @if (session('success'))
@@ -66,7 +65,8 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                        <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
+                            class="bi bi-trash"></i></button>
                 </abbr>
                 @if ($cuota['pagada'] == 1)
                     <abbr title="Descargar">
@@ -120,7 +120,7 @@
         const confirmDeleteButton = document.getElementById('confirmDeleteButton');
 
         confirmDeleteButton.addEventListener('click', function() {
-            
+
         });
     });
 </script>

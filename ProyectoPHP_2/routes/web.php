@@ -1,15 +1,7 @@
 <?php
 
-use App\Http\Controllers\ClientesCtrl;
-use App\Http\Controllers\CuotasCtrl;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardCtrl;
-use App\Http\Controllers\EmpleadosCtrl;
-use App\Http\Controllers\IncidenciasCtrl;
-use App\Http\Controllers\OperariosCtrl;
-use App\Http\Controllers\TareasCtrl;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,36 +15,17 @@ use Dompdf\Options;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
-/**
- * Ruta Dashboard
- */
-Route::get('/dashboard', [DashboardCtrl::class, 'mostrarDash'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-/**
- * Rutas Clientes
- */
-Route::resource('clientes', ClientesCtrl::class);
-
-
-/**
- * Rutas Operarios
- */
-Route::resource('empleados', EmpleadosCtrl::class);
-
-
-/**
- * Rutas Incidencias
- */
-Route::resource('incidencias', IncidenciasCtrl::class);
-
-
-/**
- * Rutas Cuotas
- */
-Route::resource('cuotas', CuotasCtrl::class);
-//Ruta para descargar factura
-Route::get('/cuotas/{cuota}', [CuotasCtrl::class, 'factura'])->name('cuotas.factura');
+require __DIR__.'/auth.php';

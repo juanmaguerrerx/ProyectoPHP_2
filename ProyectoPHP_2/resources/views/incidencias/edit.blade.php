@@ -19,8 +19,9 @@
         <a href="{{ route('incidencias.index') }}"> &#60; Volver</a>
     </div>
     <div class="form-container fm marginTopTabla custom-box">
-        <form action="{{ route('incidencias.update', [$incidencia->id]) }}" method="PUT">
+        <form action="{{ route('incidencias.update', [$incidencia->id]) }}" method="POST">
             @csrf
+            @method('PATCH')
             <h2 class="text-center mb-4 text-white">Datos Incidencia</h2>
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -87,7 +88,8 @@
                 </div>
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado:</label>
-                    <select class="form-control" name="estado" id="estado">
+                    <select class="form-control" name="estado" id="estado" onchange="toggleFechaRealizacion()">
+                        <option value="" default>-Selecciona un estado-</option>
                         <option value="P" @if ($incidencia['estado'] == 'P') selected @endif>En Proceso</option>
                         <option value="R" @if ($incidencia['estado'] == 'R') selected @endif>Realizada</option>
                         <option value="E" @if ($incidencia['estado'] == 'E') selected @endif>Esparando Aprobación
@@ -108,7 +110,8 @@
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-6" id="fecha_realizacion_field">
                     <label for="fecha_realizacion" class="form-label">Fecha Realización:</label>
                     <input type="date" class="form-control" name="fecha_realizacion" id="fecha_realizacion"
                         value="{{ $incidencia['fecha_realizacion'] ? $incidencia['fecha_realizacion'] : '' }}">
@@ -138,5 +141,31 @@
                 </div>
             </div>
         </form>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Función para mostrar u ocultar el campo de fecha de realización con animación
+                var estadoValue = $('#estado').val();
+                var fechaRealizacionField = $('#fecha_realizacion_field');
+                if (estadoValue === 'P') {
+                    fechaRealizacionField.slideUp();
+                }
+            });
+
+            function toggleFechaRealizacion() {
+                // Obtener el valor seleccionado en el campo select de "Estado"
+                var estadoValue = $('#estado').val();
+                // Obtener el campo de fecha de realización
+                var fechaRealizacionField = $('#fecha_realizacion_field');
+
+                // Mostrar u ocultar el campo de fecha de realización con animación
+                if (estadoValue === 'R' || estadoValue === 'C' || estadoValue === 'E') {
+                    fechaRealizacionField.slideDown(); // Mostrar campo de fecha de realización con animación
+                } else {
+                    fechaRealizacionField.slideUp(); // Ocultar campo de fecha de realización con animación
+                }
+            }
+        </script>
 
     @endsection

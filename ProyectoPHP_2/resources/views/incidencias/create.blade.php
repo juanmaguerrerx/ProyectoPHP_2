@@ -28,7 +28,8 @@
                     <select name="cif_cliente" id="cif_cliente" class="form-control">
                         {{-- CIF CLIENTES --}}
                         @foreach ($clientes as $cliente)
-                            <option value="{{ $cliente['id'] }}">{{ $cliente['nombre'] }}</option>
+                            <option value="{{ $cliente['id'] }}">
+                                {{ $cliente['nombre'] }}</option>
                         @endforeach
                     </select>
                     @error('cif_cliente')
@@ -87,6 +88,7 @@
                 <div class="col-md-6">
                     <label for="estado" class="form-label">Estado:</label>
                     <select class="form-control" name="estado" id="estado" onchange="toggleFechaRealizacion()">
+                        <option value="" defualt>-Selecciona un estado-</option>
                         <option value="P">En Proceso</option>
                         <option value="R">Realizada</option>
                         <option value="E">Esparando Aprobación</option>
@@ -106,7 +108,7 @@
                     @enderror
                 </div>
 
-            <div class="col-md-6" id="fecha_realizacion_field">
+                <div class="col-md-6" id="fecha_realizacion_field">
                     <label for="fecha_realizacion" class="form-label">Fecha Realización:</label>
                     <input type="date" class="form-control" name="fecha_realizacion">
                     @error('fecha_realizacion')
@@ -114,12 +116,13 @@
                     @enderror
                 </div>
             </div>
+            {{-- {{dd($empleados)}} --}}
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="dni_empleado" class="form-label">Empleado Encargado:</label>
                     <select class="form-control" name="dni_empleado" id="dni_empleado">
                         @foreach ($empleados as $empleado)
-                            <option value="{{ $empleado['dni_empleado'] }}">{{ $empleado['nombre_empleado'] }}</option>
+                            <option value="{{ $empleado['dni'] }}">{{ $empleado['nombre_empleado'] }}</option>
                         @endforeach
                     </select>
                     @error('dni_empleado')
@@ -141,25 +144,24 @@
                 // Función para mostrar u ocultar el campo de fecha de realización con animación
                 var estadoValue = $('#estado').val();
                 var fechaRealizacionField = $('#fecha_realizacion_field');
-                if (estadoValue == 'E'){
+                if (estadoValue === 'P') {
                     fechaRealizacionField.slideUp();
                 }
-
-                // Llamar a la función al cargar la página
             });
-            function toggleFechaRealizacion() {
-                    // Obtener el valor seleccionado en el campo select de "Estado"
-                    var estadoValue = $('#estado').val();
-                    // Obtener el campo de fecha de realización
-                    var fechaRealizacionField = $('#fecha_realizacion_field');
 
-                    // Mostrar u ocultar el campo de fecha de realización con animación
-                    if (estadoValue === 'R' || estadoValue === 'C' || estadoValue === 'E') {
-                        fechaRealizacionField.slideDown(); // Mostrar campo de fecha de realización con animación
-                    } else {
-                        fechaRealizacionField.slideUp(); // Ocultar campo de fecha de realización con animación
-                    }
+            function toggleFechaRealizacion() {
+                // Obtener el valor seleccionado en el campo select de "Estado"
+                var estadoValue = $('#estado').val();
+                // Obtener el campo de fecha de realización
+                var fechaRealizacionField = $('#fecha_realizacion_field');
+
+                // Mostrar u ocultar el campo de fecha de realización con animación
+                if (estadoValue === 'R' || estadoValue === 'C' || estadoValue === 'E') {
+                    fechaRealizacionField.slideDown(); // Mostrar campo de fecha de realización con animación
+                } else {
+                    fechaRealizacionField.slideUp(); // Ocultar campo de fecha de realización con animación
                 }
+            }
         </script>
 
     @endsection

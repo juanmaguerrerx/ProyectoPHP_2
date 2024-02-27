@@ -43,7 +43,8 @@
                     <label for="cif" class="form-label">Empresa:</label>
                     <select name="cif" id="cif" class="form-select custom-select text-center" readonly>
                         @foreach ($clientes as $cliente)
-                            <option value="{{ $cliente['cif'] }}">{{ $cliente['nombre'] }}</option>
+                            <option value="{{ $cliente['cif'] }}" @if ($cliente['cif'] == old('cif')) selected @endif>
+                                {{ $cliente['nombre'] }}</option>
                         @endforeach
                     </select>
                     @error('cif')
@@ -54,7 +55,8 @@
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="concepto" class="form-label">Concepto:</label>
-                    <input type="text" class="form-control large-input" id="concepto" name="concepto">
+                    <input type="text" class="form-control large-input" id="concepto" name="concepto"
+                        value="{{ old('concepto') }}">
                     @error('concepto')
                         <p class="message">{{ $message }}</p>
                     @enderror
@@ -63,35 +65,38 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="fecha_emision" class="form-label">Fecha de Emisión:</label>
-                    <input type="date" class="form-control" id="fecha_emision" name="fecha_emision">
+                    <input type="date" class="form-control" id="fecha_emision" name="fecha_emision"
+                        value="{{ old('fecha_emision') }}">
                     @error('fecha_emision')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md-6">
                     <label for="importe" class="form-label">Importe</label>
-                    <input type="text" class="form-control" id="importe" name="importe">
+                    <input type="text" class="form-control" id="importe" name="importe" value="{{ old('importe') }}">
                     @error('importe')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md-12 mt-4 text-center">
                     <label for="pagada" class="form-label text-pagada">Pagada: (marcar si lo está):</label> &nbsp;&nbsp;
-                    <input type="checkbox" class="form-check-input check-lg" name="pagada" id="pagada">
+                    <input type="checkbox" class="form-check-input check-lg" name="pagada" id="pagada"
+                        value="{{ old('pagada') }}">
                 </div>
             </div>
 
             <div class="row mb-3" id="fecha_pago_field">
                 <div class="col-md-6">
                     <label for="fecha_pago" class="form-label">Fecha de Pago:</label>
-                    <input type="date" class="form-control" id="fecha_pago" name="fecha_pago">
+                    <input type="date" class="form-control" id="fecha_pago" name="fecha_pago"
+                        value="{{ old('fecha_pago') }}">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-12">
                     <label for="notas" class="form-label">Notas:</label>
-                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10"></textarea>
+                    <textarea name="notas" class="form-control" id="notas" cols="43" rows="10">{{ old('notas') }}</textarea>
                 </div>
             </div>
             <div class="row mb-3">

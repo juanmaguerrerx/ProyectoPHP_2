@@ -450,3 +450,8 @@ thead tr {
     background-color: rgba(0, 0, 0, 0.863) !important;
     color: white;
 }
+.mt-6 {
+    margin: 0px auto;
+    margin-top: 7rem;
+    width: 200px;
+}

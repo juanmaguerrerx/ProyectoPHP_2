@@ -36,18 +36,19 @@
     </div>
     <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4 text-white">Datos Cuota</h2>
-        <form class="form-floating" method="POST" action="{{ route('cuotas.store') }}">
+        <form class="form-floating" method="POST" action="{{ route('cuotas.update', [$cuota->id]) }}">
             @csrf
+            @method('PATCH')
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cif" class="form-label">Empresa:</label>
-                    <select name="cif" id="cif" class="form-select custom-select text-center" readonly>
+                    <select name="cif_cliente" id="cif_cliente" class="form-select custom-select text-center" readonly>
                         @foreach ($clientes as $cliente)
                             <option value="{{ $cliente['cif'] }}" @if ($cuota['cif_cliente'] == $cliente['cif']) selected @endif>
                                 {{ $cliente['nombre'] }}</option>
                         @endforeach
                     </select>
-                    @error('cif')
+                    @error('cif_cliente')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
@@ -88,8 +89,9 @@
 
             <div class="row mb-3" id="fecha_pago_field">
                 <div class="col-md-6">
-                    <label for="fecha_pago" class="form-label">Fecha de Pago:</label>
-                    <input type="date" class="form-control" id="fecha_pago" name="fecha_pago">
+                    <label for="fecha_pago" class="form-label">Fecha de Pago: (por defecto fecha actual)</label>
+                    <input type="date" class="form-control" id="fecha_pago" name="fecha_pago"
+                        value="{{ $cuota['fecha_pago'] }}">
                 </div>
             </div>
 

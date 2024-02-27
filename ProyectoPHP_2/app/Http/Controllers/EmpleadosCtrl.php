@@ -78,9 +78,34 @@ class EmpleadosCtrl extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Empleados $empleados)
+    public function update(Request $request, Empleados $empleado)
     {
         //
+        // dd($request);
+        
+        $request->validate([
+            'dni' => 'required',
+            'nombre_empleado' => 'required',
+            'correo' => 'required|email',
+            'telefono' => 'required|numeric|digits:9',
+            'fecha_alta' => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
+            'direccion' => 'required',
+        ]);
+
+        // Si la validación pasa, crear un nuevo cliente    
+        $empleado->dni = $request->dni;
+        $empleado->nombre_empleado = $request->nombre_empleado;
+        $empleado->telefono = $request->telefono;
+        $empleado->correo = $request->correo;
+        $empleado->direccion = $request->direccion;
+        $empleado->fecha_alta = $request->fecha_alta;
+        $empleado->admin = $request->rol;
+
+        // Guardar el cliente en la base de datos
+        $empleado->save();
+
+        return redirect()->route('empleados.index')->with('success', 'Cliente actualizado correctamente.');
+
     }
 
     /**

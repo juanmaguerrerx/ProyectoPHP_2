@@ -10,8 +10,9 @@
     </div>
     <div class="form-container fm marginTopTabla custom-box">
         <h2 class="text-center mb-4 text-white">Datos Empleado</h2>
-        <form class="form-floating" method="POST" action="{{ route('empleados.store') }}">
+        <form class="form-floating" method="POST" action="{{ route('empleados.update',[$empleado->id]) }}">
             @csrf
+            @method('PATCH')
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="dni" class="form-label">DNI:</label>

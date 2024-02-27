@@ -44,6 +44,7 @@ class IncidenciasCtrl extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             "cif_cliente" => "required",
             "descripcion" => "required",
@@ -54,9 +55,28 @@ class IncidenciasCtrl extends Controller
             "estado" => "required",
             "fecha_creacion" => "required",
             "dni_empleado" => "required",
-            "fecha_realizacion" => "required|date|between:".now()->format('d-m-Y').$request->fecha_creacion,
+            "fecha_realizacion" => "nullable|date|between:" . now()->format('d-m-Y') . $request->fecha_creacion,
             "anotaciones_anteriores" => "required",
         ]);
+
+
+        $incidencia = new Incidencias;
+        $incidencia->cif_cliente = $request->cif_cliente;
+        $incidencia->descripcion = $request->descripcion;
+        $incidencia->direccion = $request->direccion;
+        $incidencia->poblacion = $request->poblacion;
+        $incidencia->codigo_postal = $request->codigo_postal;
+        $incidencia->provincia = $request->provincia;
+        $incidencia->estado = $request->estado;
+        $incidencia->fecha_creacion = $request->fecha_creacion;
+        $incidencia->dni_empleado = $request->dni_empleado;
+        $incidencia->fecha_realizacion = $request->fecha_realizacion;
+        $incidencia->anotaciones_anteriores = $request->anotaciones_anteriores;
+
+
+        $incidencia->save();
+
+        return redirect()->route('incidencias.index')->with('success', 'Incidencia creada');
     }
 
     /**
@@ -64,12 +84,15 @@ class IncidenciasCtrl extends Controller
      */
     public function show(Incidencias $incidencia)
     {
-        //
-        // dd($incidencia);
+
         $empleados = new Empleados;
         $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
         $provincias = new TblProvincias;
         $incidenia['provincia'] = $provincias->getProvincia($incidencia['id']);
+        $clientes = new Clientes;
+        $incidencia['persona_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->nombre;
+        $incidencia['correo'] = $clientes->getCliente($incidencia['cif_cliente'])->correo;
+        $incidencia['telefono_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->telefono;
         return view('incidencias.show', compact('incidencia'));
     }
 
@@ -95,22 +118,38 @@ class IncidenciasCtrl extends Controller
     {
         //
         $request->validate([
-            "cif_cliente" => "required",
-            "persona_contacto" => "required",
-            "telefono_contacto" => "required|numeric|digits:10",
             "descripcion" => "required",
-            "correo" => "required|email",
             "direccion" => "required",
             "poblacion" => "required",
-            "codigo_postal" => "required",
-            "provincia" => "required",
+            "codigo_postal" => "required", //COD VALIDATION
+            "provincia" => "required", //PROVINCIA VALIDATION
             "estado" => "required",
-            "fecha_creacion" => "required",
+            "fecha_creacion" => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
             "dni_empleado" => "required",
-            "fecha_realizacion" => "required",
-            "anotaciones_anteriores" => "required",
-            "anotaciones_posteriores" => "Anotaciones posteriores 1",
+            "fecha_realizacion" => "nullable|date|after_or_equal:".$request->fecha_creacion,
+            "anotaciones_anteriores" => "required"
         ]);
+
+
+        if($request->estado == 'P'){
+            $fecha = null;
+        }else $fecha = $request->fecha_realizacion;
+
+        $incidencia->cif_cliente = $request->cif_cliente;
+        $incidencia->descripcion = $request->descripcion;
+        $incidencia->direccion = $request->direccion;
+        $incidencia->poblacion = $request->poblacion;
+        $incidencia->codigo_postal = $request->codigo_postal;
+        $incidencia->provincia = $request->provincia;
+        $incidencia->estado = $request->estado;
+        $incidencia->fecha_creacion = $request->fecha_creacion;
+        $incidencia->dni_empleado = $request->dni_empleado;
+        $incidencia->fecha_realizacion = $fecha;
+        $incidencia->anotaciones_anteriores = $request->anotaciones_anteriores;
+
+        $incidencia->save();
+
+        return redirect()->route('incidencias.index')->with('success', 'Incidencia creada');
     }
 
     /**
