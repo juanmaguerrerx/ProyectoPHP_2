@@ -114,11 +114,11 @@
                 <label for="" class="form-label">Fecha Creación:</label>
                 <div class="form-control">{{ $incidencia['fecha_creacion'] }}</div>
             </div>
-            @if($incidencia['fecha_realizacion'])
-            <div class="col-md-6">
-                <label for="" class="form-label">Fecha Realización:</label>
-                <div class="form-control">{{ $incidencia['fecha_realizacion'] }}</div>
-            </div>
+            @if ($incidencia['fecha_realizacion'])
+                <div class="col-md-6">
+                    <label for="" class="form-label">Fecha Realización:</label>
+                    <div class="form-control">{{ $incidencia['fecha_realizacion'] }}</div>
+                </div>
             @endif
         </div>
         <div class="row mb-3">
@@ -128,7 +128,37 @@
             </div>
         </div>
 
-        {{-- FALTA OPERARIO ENCARGADO Y FICHERO RESUMEN --}}
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="" class="form-label">Anotaciones Anteriores:</label>
+                <div class="form-control">{{ $incidencia['anotaciones_anteriores'] }}</div>
+            </div>
+        </div>
+
+        @if ($incidencia['anotaciones_posteriores'])
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="" class="form-label">Anotaciones Posteriores:</label>
+                <div class="form-control">{{ $incidencia['anotaciones_posteriores'] }}</div>
+            </div>
+        </div>
+        @endif
+        
+        {{-- {{dd($incidencia['fichero_resumen'])}} --}}
+
+        @if ($incidencia['fichero_resumen'])
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="" class="form-label">Fichero Resumen:</label>
+                <div class="form-control">
+                        <embed src="{{url('storage/ficheros_resumen/'.$incidencia['fichero_resumen'])}}" type="application/pdf" width="100%" height="600px">
+                </div>
+            </div>
+        </div>
+        @endif
+
+
+
     </div>
 
 @endsection

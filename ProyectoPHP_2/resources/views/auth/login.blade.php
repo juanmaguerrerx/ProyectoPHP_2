@@ -24,6 +24,14 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <form action="{{route('register')}}" method="post">
+                    @csrf
+                <a href="{{route('register')}}">No tienes cuenta? Registrate</a></form>
+            </label>
+        </div>
+
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
@@ -39,9 +47,9 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button class="ms-3" type="submit">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-primary-button> 
         </div>
     </form>
 </x-guest-layout>

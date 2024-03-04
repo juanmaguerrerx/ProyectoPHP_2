@@ -19,6 +19,12 @@ class Paises extends Model
         return $paises;
     }
 
+    public function getPais($id)
+    {
+        $pais = Paises::where('id', $id)->first();
+        return $pais;
+    }
+
     public function getNombrePais($id)
     {
         $nombre = Paises::where('id', $id)->value('nombre');

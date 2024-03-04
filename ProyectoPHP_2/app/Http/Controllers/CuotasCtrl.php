@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuotas;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailableClass;
 use App\Models\Clientes;
+use App\Models\Paises;
 use App\Rules\CIFValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -11,6 +14,8 @@ use Dompdf\Dompdf;
 use Illuminate\Support\Carbon;
 use Dompdf\Options;
 use FFI\CData;
+use Illuminate\Support\Facades\Http;
+
 
 class CuotasCtrl extends Controller
 {
@@ -55,11 +60,79 @@ class CuotasCtrl extends Controller
         // Guardar el cliente en la bbdd
         $cuota->save();
 
+        $this->sendCuotaCreatedEmail($cuota);
+
+
         return redirect()->route('cuotas.index')->with('success', 'Cuota creada con éxito');
     }
-
-    public function factura(Cuotas $cuota)
+    /**
+     * Envía un correo electrónico al cliente correspondiente cuando se crea una nueva cuota.
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    private function sendCuotaCreatedEmail(Cuotas $cuota)
     {
+        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
+
+        // dd($cliente->correo);
+
+        // Verifica si el cliente tiene una dirección de correo electrónico
+        if ($cliente->correo) {
+            // Construye el asunto del correo electrónico
+            $subject = 'Nueva cuota creada';
+        
+            // Envía el correo electrónico utilizando la clase MailableClass
+            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente));
+        }
+    }
+
+    /**
+     * Envía un correo electrónico al cliente correspondiente con una factura cuando se paga una cuota.
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    private function sendCuotaPagadaEmail(Cuotas $cuota)
+    {
+        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
+
+        // dd($cliente->correo);
+
+        // Verifica si el cliente tiene una dirección de correo electrónico
+        if ($cliente->correo) {
+            // Construye el asunto del correo electrónico
+            $subject = 'Nueva factura';
+        
+            // Envía el correo electrónico utilizando la clase MailableClass
+            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente, true));
+        }
+    }
+
+    /**
+     * Mostrar cuota (descargar pdf y enviar correo al cliente)
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    public function show(Cuotas $cuota)
+    {
+        $cliente = new Clientes();
+        $cliente = $cliente->getCliente($cuota['cif_cliente']);
+        // $pais = new Paises();
+        // $pais = $pais->getPais($cliente['pais_id']);
+        // if ($pais['iso_moneda'] != 'EUR') {
+        //     $response = Http::get('https://www.freeforexapi.com/api/live?pairs=EUR' . $pais['iso_moneda']);
+
+        //     if ($response->successful()) {
+        //         $data = $response->json();
+        //         if ($data['rates'] != null) {
+        //             $cuota['importe'] = $cuota['importe'] * $data['rates'];
+        //         } else $cuota['importe'] = $cuota['importe'];
+        //     }
+        // }
+
+
         //Si está pagada que se descargue, sino, que vuelva a .index
         if ($cuota['pagada'] == 1) {
 
@@ -77,8 +150,12 @@ class CuotasCtrl extends Controller
 
             // Descargar el archivo PDF con un nombre específico
             $dompdf->stream('FacturaNSC_' . $cuota['cif_cliente'] . '_' . $cuota['fecha_pago'] . '.pdf', ['Attachment' => true]);
+
+            $this->sendCuotaPagadaEmail($cuota);
+
         } else return redirect('/cuotas');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -109,12 +186,12 @@ class CuotasCtrl extends Controller
         $fecha = $request->fecha_pago;
         if ($request->input('pagada') == 'on') {
             $pagada = 1;
-            if($fecha = null || $fecha == '0000-00-00'|| $fecha==0 || $fecha = false){
-            $fecha = date('Y-m-d');
-            }else $fecha = $request->fecha_pago;
+            if ($fecha = null || $fecha == '0000-00-00' || $fecha == 0 || $fecha = false) {
+                $fecha = date('Y-m-d');
+            } else $fecha = $request->fecha_pago;
         }
 
-        
+
 
         // Si la validación pasa, actualizar cliente
         $cuota->cif_cliente = $request->cif_cliente;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empleados;
 use Illuminate\Http\Request;
+use App\Rules\DNIValidation;
 
 class EmpleadosCtrl extends Controller
 {
@@ -33,7 +34,7 @@ class EmpleadosCtrl extends Controller
     {
         //
         $request->validate([
-            'dni' => 'required',
+            'dni' => ['required', new DNIValidation],
             'nombre' => 'required',
             'correo' => 'required|email',
             'telefono' => 'required|numeric|digits:9',
@@ -54,7 +55,7 @@ class EmpleadosCtrl extends Controller
         // Guardar el cliente en la base de datos
         $empleado->save();
 
-        
+
         return redirect()->route('empleados.index')->with('success', 'Empleado añadido correctamente');
     }
 
@@ -82,9 +83,9 @@ class EmpleadosCtrl extends Controller
     {
         //
         // dd($request);
-        
+
         $request->validate([
-            'dni' => 'required',
+            'dni' => ['required', new DNIValidation],
             'nombre_empleado' => 'required',
             'correo' => 'required|email',
             'telefono' => 'required|numeric|digits:9',
@@ -105,7 +106,6 @@ class EmpleadosCtrl extends Controller
         $empleado->save();
 
         return redirect()->route('empleados.index')->with('success', 'Cliente actualizado correctamente.');
-
     }
 
     /**

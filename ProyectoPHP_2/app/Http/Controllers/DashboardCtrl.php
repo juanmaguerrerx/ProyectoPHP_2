@@ -8,6 +8,7 @@ class DashboardCtrl extends Controller
 {
     function mostrarDash()
     {
-        return view('dashboard');
+        $this->middleware('auth');
+        return view('inicio');
     }
 }

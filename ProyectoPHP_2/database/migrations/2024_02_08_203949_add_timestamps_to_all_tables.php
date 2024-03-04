@@ -15,15 +15,15 @@ class AddTimestampsToAllTables extends Migration
      */
     public function up()
     {
-        $tables = DB::select('SHOW TABLES');
+        // $tables = DB::select('SHOW TABLES');
 
-        foreach ($tables as $table) {
-            $tableName = reset($table);
+        // foreach ($tables as $table) {
+        //     $tableName = reset($table);
 
-            Schema::table($tableName, function ($table) {
-                $table->timestamps(); // Agrega las columnas created_at y updated_at
-            });
-        }
+        //     Schema::table($tableName, function ($table) {
+        //         $table->timestamps(); // Agrega las columnas created_at y updated_at
+        //     });
+        // }
     }
 
     /**

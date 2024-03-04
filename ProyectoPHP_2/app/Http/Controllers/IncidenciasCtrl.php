@@ -7,15 +7,24 @@ use App\Models\Incidencias;
 use Illuminate\Http\Request;
 use App\Models\TblProvincias;
 use App\Models\Clientes;
+use App\Models\User;
+use App\Rules\ProvinciaValidation;
 
 class IncidenciasCtrl extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $incidencias = Incidencias::paginate(5);
+        if ($request->user()->isAdmin()) {
+            $incidencias = Incidencias::paginate(5);
+        } else {
+            $email = auth()->user()->email;
+            $empleado = new Empleados();
+            $empleado = $empleado->getEmpleadoDni($email);
+            $incidencias = Incidencias::where('dni_empleado', $empleado)->paginate(5);
+        }
         $provincias = new TblProvincias;
         $empleados = new Empleados;
         foreach ($incidencias as $incidencia) {
@@ -28,8 +37,11 @@ class IncidenciasCtrl extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->user()->isAdmin()) {
+            return redirect()->back();
+        }
         $provincias = new TblProvincias;
         $provincias = $provincias->all();
         $empleados = new Empleados;
@@ -46,19 +58,17 @@ class IncidenciasCtrl extends Controller
     {
         // dd($request);
         $request->validate([
-            "cif_cliente" => "required",
             "descripcion" => "required",
             "direccion" => "required",
             "poblacion" => "required",
-            "codigo_postal" => "required",
-            "provincia" => "required",
+            "codigo_postal" => ['required', new ProvinciaValidation($request->provincia)],
             "estado" => "required",
             "fecha_creacion" => "required",
             "dni_empleado" => "required",
+            'fichero_resumen' => 'nullable|max:4096',
             "fecha_realizacion" => "nullable|date|between:" . now()->format('d-m-Y') . $request->fecha_creacion,
             "anotaciones_anteriores" => "required",
         ]);
-
 
         $incidencia = new Incidencias;
         $incidencia->cif_cliente = $request->cif_cliente;
@@ -70,6 +80,7 @@ class IncidenciasCtrl extends Controller
         $incidencia->estado = $request->estado;
         $incidencia->fecha_creacion = $request->fecha_creacion;
         $incidencia->dni_empleado = $request->dni_empleado;
+        $incidencia->fichero_resumen = $request->fichero_resumen;
         $incidencia->fecha_realizacion = $request->fecha_realizacion;
         $incidencia->anotaciones_anteriores = $request->anotaciones_anteriores;
 
@@ -84,6 +95,7 @@ class IncidenciasCtrl extends Controller
      */
     public function show(Incidencias $incidencia)
     {
+        // dd($incidencia);
 
         $empleados = new Empleados;
         $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
@@ -108,6 +120,7 @@ class IncidenciasCtrl extends Controller
         $empleados = $empleados->all();
         $clientes = new Clientes;
         $clientes = $clientes->all();
+
         return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados', 'clientes'));
     }
 
@@ -116,24 +129,26 @@ class IncidenciasCtrl extends Controller
      */
     public function update(Request $request, Incidencias $incidencia)
     {
-        //
+
+        // dd($request);
+
         $request->validate([
             "descripcion" => "required",
             "direccion" => "required",
             "poblacion" => "required",
-            "codigo_postal" => "required", //COD VALIDATION
-            "provincia" => "required", //PROVINCIA VALIDATION
+            "codigo_postal" => ['required', new ProvinciaValidation($request->provincia)],
             "estado" => "required",
-            "fecha_creacion" => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
+            "fecha_creacion" => "required",
             "dni_empleado" => "required",
-            "fecha_realizacion" => "nullable|date|after_or_equal:".$request->fecha_creacion,
-            "anotaciones_anteriores" => "required"
+            'fichero_resumen' => 'nullable|max:4096',
+            "fecha_realizacion" => "nullable|date|after_or_equal:" . $request->fecha_creacion,
+            "anotaciones_anteriores" => "required",
         ]);
 
 
-        if($request->estado == 'P'){
+        if ($request->estado == 'P') {
             $fecha = null;
-        }else $fecha = $request->fecha_realizacion;
+        } else $fecha = $request->fecha_realizacion;
 
         $incidencia->cif_cliente = $request->cif_cliente;
         $incidencia->descripcion = $request->descripcion;
@@ -145,7 +160,10 @@ class IncidenciasCtrl extends Controller
         $incidencia->fecha_creacion = $request->fecha_creacion;
         $incidencia->dni_empleado = $request->dni_empleado;
         $incidencia->fecha_realizacion = $fecha;
+        $incidencia->fichero_resumen = $request->fichero_resumen;
         $incidencia->anotaciones_anteriores = $request->anotaciones_anteriores;
+
+        // dd($incidencia);    
 
         $incidencia->save();
 

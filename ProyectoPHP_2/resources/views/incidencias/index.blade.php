@@ -71,7 +71,11 @@
                     $icono = '';
                     break;
             }
-            if ($incidencia['fecha_realizacion']==null || $incidencia['fecha_realizacion']=='0000-00-00' || $incidencia['estado']=='P'){
+            if (
+                $incidencia['fecha_realizacion'] == null ||
+                $incidencia['fecha_realizacion'] == '0000-00-00' ||
+                $incidencia['estado'] == 'P'
+            ) {
                 $fecha = '~';
             }
         @endphp
@@ -89,10 +93,12 @@
                         <button class="btn btn-outline-warning bb btn-sm"><i class="bi bi-pencil-square"></i></button>
                     </a>
                 </abbr>
-                <abbr title="Eliminar">
-                    <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
-                            class="bi bi-trash"></i></button>
-                </abbr>
+                @if (auth()->user()->isAdmin())
+                    <abbr title="Eliminar">
+                        <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>
+                    </abbr>
+                @endif
                 <abbr title="Ver">
                     <a href="{{ route('incidencias.show', [$incidencia->id]) }}">
                         <button class="btn btn-secondary bb btn-sm"><i class="bi bi-search"></i></button>

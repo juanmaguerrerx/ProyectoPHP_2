@@ -42,6 +42,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('dashboard') }}">Inicio</a>
                 </li>
+                @if (auth()->check() && auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('clientes.index') }}">Clientes</a>
                 </li>
@@ -49,17 +50,23 @@
                     <a class="nav-link text-white" href="{{ route('empleados.index') }}">Empleados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('incidencias.index') }}">Incidencias</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cuotas.index') }}">Cuotas</a>
                 </li>
+                @endif
+               
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('incidencias.index') }}">Incidencias</a>
+                </li>
+                
             </ul>
 
             <ul class="navbar-nav cs">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><button class="btn btn-outline-warning">Cerrar
-                            Sesión</button></a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a class="nav-link" href="{{ route('logout') }}"><button class="btn btn-outline-warning">Cerrar
+                                Sesión</button></a>
+                    </form>
                 </li>
             </ul>
 

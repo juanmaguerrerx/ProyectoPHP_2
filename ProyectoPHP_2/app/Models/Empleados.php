@@ -14,4 +14,10 @@ class Empleados extends Model
         $empleado = Empleados::where('dni', $dni)->value('nombre_empleado');
         return $empleado;
     }
+
+
+    public function getEmpleadoDni($email){
+        $empleado = Empleados::where('correo', $email)->value('dni');
+        return $empleado;
+    }
 }
