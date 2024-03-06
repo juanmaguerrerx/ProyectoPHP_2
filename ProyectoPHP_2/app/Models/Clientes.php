@@ -13,6 +13,7 @@ class Clientes extends Model
     {
 
         $cliente = Clientes::where('cif', $cif)->first();
+        
         return $cliente;
     }
 }

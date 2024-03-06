@@ -13,14 +13,14 @@
 @endif
 
 @section('content')
-    @if (auth()->user()->isAdmin())
+    {{-- @if (auth()->user()->isAdmin())
         <form action="{{ route('incidencias.search') }}" method="GET">
             <div class="input-group mb-3">
                 <input type="text" name="search" class="buscador" placeholder="Buscar...">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
             </div>
         </form>
-    @endif
+    @endif --}}
     @extends('../tabla')
     @section('nombre_tabla') Incidencias @endsection
 @section('thead')
@@ -99,7 +99,7 @@
                 @if ($fecha == '~' || $fecha == null)
                     {{ $fecha }}
                 @else {{ \Carbon\Carbon::parse($fecha)->format('d-m-Y') }}
-                @endif
+                @endif  
             </td>
             <td style="width: 150px">
                 <abbr title="Editar">

@@ -33,12 +33,12 @@
 
 
 @section('content')
-    <form action="{{ route('clientes.search') }}" method="GET">
+    {{-- <form action="{{ route('clientes.search') }}" method="GET">
         <div class="input-group mb-3">
             <input type="text" name="search" class="buscador" placeholder="Buscar...">
             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </div>
-    </form>
+    </form> --}}
     @extends('../tabla')
     @section('nombre_tabla') Clientes @endsection
 @section('thead')

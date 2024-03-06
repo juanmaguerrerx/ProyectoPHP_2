@@ -117,7 +117,7 @@ class IncidenciasCtrl extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Incidencias $incidencia)
+    public function show(Request $request, Incidencias $incidencia)
     {
         // dd($incidencia);
 
@@ -128,11 +128,25 @@ class IncidenciasCtrl extends Controller
         $incidenia['provincia'] = $provincias->getProvincia($incidencia['id']);
         $clientes = new Clientes;
 
+
         $incidencia['persona_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->nombre;
         $incidencia['correo'] = $clientes->getCliente($incidencia['cif_cliente'])->correo;
         $incidencia['telefono_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->telefono;
         // dd($incidencia['fichero_resumen']);
-        return view('incidencias.show', compact('incidencia'));
+
+
+        $empleado = new Empleados;
+        if (!$request->user()->isAdmin()) {
+            if ($empleado->where('dni', $incidencia->dni_empleado)->value('correo') == $request->user()->email) {
+                return view('incidencias.show', compact('incidencia'));
+            } else {
+                return redirect()->route('incidencias.index');
+            }
+        }else{
+            return view('incidencias.show', compact('incidencia'));
+        }
+
+        // return view('incidencias.show', compact('incidencia'));
     }
 
     /**
@@ -172,7 +186,6 @@ class IncidenciasCtrl extends Controller
                 "estado" => "required",
                 "fecha_realizacion" => "nullable|date|after_or_equal:" . $incidencia->fecha_creacion,
                 'fichero_resumen' => 'nullable|max:4096',
-                "anotaciones_posteriores" => "required"
             ]);
 
             if ($request->estado == 'P') {
@@ -199,7 +212,6 @@ class IncidenciasCtrl extends Controller
             "dni_empleado" => "required",
             'fichero_resumen' => 'nullable|max:4096',
             "fecha_realizacion" => "nullable|date|after_or_equal:" . $request->fecha_creacion,
-            "anotaciones_anteriores" => "required",
         ]);
 
 
