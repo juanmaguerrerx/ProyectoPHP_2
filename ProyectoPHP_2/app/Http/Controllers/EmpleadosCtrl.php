@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Empleados;
 use Illuminate\Http\Request;
 use App\Rules\DNIValidation;
+use App\Rules\EmailValidation;
+use Egulias\EmailValidator\EmailValidator;
 
 class EmpleadosCtrl extends Controller
 {
@@ -14,7 +16,6 @@ class EmpleadosCtrl extends Controller
     public function index()
     {
         $empleados = Empleados::paginate(5);
-        // dd($empleados);
         return view('empleados.index', compact('empleados'));
     }
 
@@ -36,7 +37,7 @@ class EmpleadosCtrl extends Controller
         $request->validate([
             'dni' => ['required', new DNIValidation],
             'nombre' => 'required',
-            'correo' => 'required|email',
+            'correo' => ['required ',new EmailValidation],
             'telefono' => 'required|numeric|digits:9',
             'fecha_alta' => 'required|date|before_or_equal:' . now()->format('d-m-Y'),
             'direccion' => 'required',
@@ -81,9 +82,12 @@ class EmpleadosCtrl extends Controller
      */
     public function update(Request $request, Empleados $empleado)
     {
-        //
-        // dd($request);
-
+    
+        if($request->correo != $empleado->correo){
+            $request->validate([
+                'correo' => ['required', new EmailValidator]
+            ]);
+        }
         $request->validate([
             'dni' => ['required', new DNIValidation],
             'nombre_empleado' => 'required',

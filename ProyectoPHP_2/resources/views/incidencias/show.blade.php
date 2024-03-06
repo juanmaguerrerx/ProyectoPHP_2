@@ -146,16 +146,16 @@
         
         {{-- {{dd($incidencia['fichero_resumen'])}} --}}
 
-        @if ($incidencia['fichero_resumen'])
+        {{-- @if ($incidencia['fichero_resumen'])
         <div class="row mb-3">
             <div class="col-md-12">
                 <label for="" class="form-label">Fichero Resumen:</label>
                 <div class="form-control">
-                        <embed src="{{url('storage/ficheros_resumen/'.$incidencia['fichero_resumen'])}}" type="application/pdf" width="100%" height="600px">
+                        <embed src="{{url('public/ficheros_resumen/'.$incidencia['fichero_resumen'])}}" type="application/pdf" width="100%" height="600px">
                 </div>
             </div>
         </div>
-        @endif
+        @endif --}}
 
 
 

@@ -93,7 +93,7 @@
             </tr>
             <tr>
                 <th>Importe</th>
-                <td id="importe">{{ $cuota['importe'] }}€</td>
+                <td id="importe">{{ $cuota['importe'] }} {{ $cuota['moneda'] }}</td>
             </tr>
             <tr>
                 <th>Fecha de Pago</th>

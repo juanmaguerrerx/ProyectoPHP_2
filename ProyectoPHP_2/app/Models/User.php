@@ -16,9 +16,21 @@ class User extends AuthenticatableUser implements Authenticatable
         'password',
     ];
 
-    
+    public function isAdmin()
+    {
 
-    public function isAdmin(){
+        $empleados = new Empleados();
+        $empleados = $empleados::where('correo', $this->email)->value('admin');
+        $this->is_admin = $empleados;
         return $this->is_admin;
+    }
+
+    public function isIn()
+    {
+        $empleados = new Empleados;
+        $empleado = $empleados::where('correo', $this->email)->get();
+        if($empleado){
+            return true;
+        }else return false;
     }
 }

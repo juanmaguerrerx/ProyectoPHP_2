@@ -81,7 +81,7 @@ class CuotasCtrl extends Controller
         if ($cliente->correo) {
             // Construye el asunto del correo electrónico
             $subject = 'Nueva cuota creada';
-        
+
             // Envía el correo electrónico utilizando la clase MailableClass
             Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente));
         }
@@ -103,7 +103,7 @@ class CuotasCtrl extends Controller
         if ($cliente->correo) {
             // Construye el asunto del correo electrónico
             $subject = 'Nueva factura';
-        
+
             // Envía el correo electrónico utilizando la clase MailableClass
             Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente, true));
         }
@@ -119,23 +119,29 @@ class CuotasCtrl extends Controller
     {
         $cliente = new Clientes();
         $cliente = $cliente->getCliente($cuota['cif_cliente']);
-        // $pais = new Paises();
-        // $pais = $pais->getPais($cliente['pais_id']);
-        // if ($pais['iso_moneda'] != 'EUR') {
-        //     $response = Http::get('https://www.freeforexapi.com/api/live?pairs=EUR' . $pais['iso_moneda']);
+        $pais = new Paises();
+        $pais = $pais->getPais($cliente['pais_id']);
 
-        //     if ($response->successful()) {
-        //         $data = $response->json();
-        //         if ($data['rates'] != null) {
-        //             $cuota['importe'] = $cuota['importe'] * $data['rates'];
-        //         } else $cuota['importe'] = $cuota['importe'];
-        //     }
-        // }
+        if ($pais['iso_moneda'] != 'EUR') {
+            $response = Http::get('https://api.exchangerate-api.com/v4/latest/EUR');
 
-
+            if ($response->successful()) {
+                $data = $response->json();
+                $moneda = $pais['iso_moneda'];
+                $tipo_cambio = $data['rates'][$moneda];
+                $moneda_convertida = $cuota['importe'] * $tipo_cambio;
+                $cuota['importe'] = $moneda_convertida;
+            } else {
+                // Manejar el error de la solicitud a la API de tipo de cambio
+                // Por ejemplo, puedes lanzar una excepción o manejarlo de otra manera
+                // Aquí simplemente redirigimos con un mensaje de error
+                return redirect('/cuotas')->with('error', 'Error al obtener el tipo de cambio');
+            }
+        }
+        $this->sendCuotaPagadaEmail($cuota);
         //Si está pagada que se descargue, sino, que vuelva a .index
         if ($cuota['pagada'] == 1) {
-
+            $cuota['moneda']=$pais['iso_moneda'];
             $html = View::make('cuotas.factura', compact('cuota'))->render();
 
             // Crear una instancia de Dompdf con las opciones predeterminadas
@@ -151,8 +157,7 @@ class CuotasCtrl extends Controller
             // Descargar el archivo PDF con un nombre específico
             $dompdf->stream('FacturaNSC_' . $cuota['cif_cliente'] . '_' . $cuota['fecha_pago'] . '.pdf', ['Attachment' => true]);
 
-            $this->sendCuotaPagadaEmail($cuota);
-
+            
         } else return redirect('/cuotas');
     }
 
@@ -180,7 +185,6 @@ class CuotasCtrl extends Controller
             'pagada' => 'nullable',
             'fecha_pago' => 'nullable|date|after_or_equal:' . $request->fecha_emision,
         ]);
-        // dd($request);
 
         $pagada = 0;
         $fecha = $request->fecha_pago;
@@ -190,7 +194,6 @@ class CuotasCtrl extends Controller
                 $fecha = date('Y-m-d');
             } else $fecha = $request->fecha_pago;
         }
-
 
 
         // Si la validación pasa, actualizar cliente

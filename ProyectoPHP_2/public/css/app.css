@@ -206,6 +206,14 @@ span i {
     width: 30px;
 }
 
+.buscador{
+    width: 170px;
+    background-color: rgba(255, 255, 255, 0.149);
+    backdrop-filter: blur(5px);
+    color: white;
+    margin-left: 120px;
+}
+
 
 
 

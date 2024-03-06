@@ -24,13 +24,21 @@
 <header>@include('navbar')</header>
 
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show text-center mt-6" role="alert">
+    <div class="alert alert-success alert-dismissible fade show text-center mt-6" role="alert"> 
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
 
+
+
 @section('content')
+    <form action="{{ route('clientes.search') }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" name="search" class="buscador" placeholder="Buscar...">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+    </form>
     @extends('../tabla')
     @section('nombre_tabla') Clientes @endsection
 @section('thead')
@@ -51,7 +59,7 @@
             <td>{{ $cliente['telefono'] }}</td>
             <td>{{ $cliente['correo'] }}</td>
             <td>{{ $cliente['cuenta_corriente'] }}</td>
-            <td>{{ $cliente['pais_id'] }} <img src="./images/country-flags-main/svg/{{ $cliente['pais_iso2'] }}.svg"
+            <td>{{ $cliente['pais_id'] }} <img src="../images/country-flags-main/svg/{{ $cliente['pais_iso2'] }}.svg"
                     alt="{{ $cliente['pais_iso2'] }}" class="bandera"></td>
             <td>{{ $cliente['importe_mensual'] }}€</td>
             <td>
@@ -74,7 +82,6 @@
         {{ $clientes->links() }}
     </div>
 </div>
-
 
 
 
@@ -102,12 +109,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+                <a href="{{ route('clientes.destroy', [$cliente->id]) }}"><button type="button"
+                        id="confirmDeleteButton" class="btn btn-danger">Eliminar</button></a>
             </div>
         </div>
     </div>
 </div>
-
+{{-- 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const confirmDeleteButton = document.getElementById('confirmDeleteButton');
@@ -119,7 +127,7 @@
             // O puedes enviar una solicitud AJAX para eliminar el cliente sin recargar la página
         });
     });
-</script>
+</script> --}}
 
 
 @endsection

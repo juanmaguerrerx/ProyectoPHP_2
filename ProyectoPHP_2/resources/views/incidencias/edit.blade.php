@@ -66,10 +66,10 @@
             </div>
             <div class="row mb-3" {{ $hidden }}>
                 <div class="col-md-6" {{ $hidden }}>
-                    <label for="direccion" class="form-label">Población:</label>
-                    <input type="text" class="form-control" name="direccion" id="direccion"
-                        value="{{ $incidencia['direccion'] ? $incidencia['direccion'] : '' }}">
-                    @error('direccion')
+                    <label for="poblacion" class="form-label">Población:</label>
+                    <input type="text" class="form-control" name="poblacion" id="poblacion"
+                        value="{{ $incidencia['poblacion'] ? $incidencia['poblacion'] : '' }}">
+                    @error('poblacion')
                         <p class="message">{{ $message }}</p>
                     @enderror
                 </div>
@@ -99,7 +99,7 @@
                     <label for="fecha_creacion" class="form-label">Fecha Creación:</label>
                     <input type="date" class="form-control" {{ $hidden }} name="fecha_creacion"
                         id="fecha_creacion"
-                        value="{{ $incidencia['fecha_creacion'] ? $incidencia['fecha_creacion'] : '' }}">
+                        value=" {{ $incidencia['fecha_creacion'] ? $incidencia['fecha_creacion'] : '' }}">
                     @error('fecha_creacion')
                         <p class="message">{{ $message }}</p>
                     @enderror
@@ -124,7 +124,8 @@
                 <div class="col-md-12 mt-4" {{ $hidden }}>
                     <label for="anotaciones_anteriores" class="form-label">Anotaciones Anteriores:</label>
                     <textarea class="form-control txt" name="anotaciones_anteriores" id="anotaciones_anteriores" cols="10"
-                        rows="5">{{ old('anotaciones_anteriores') }}</textarea>
+                        rows="5">@if (old('anotaciones_anteriores')){{ $incidencia['anotaciones_anteriores'] }}@else{{ $incidencia['anotaciones_anteriores'] }}@endif
+                    </textarea>
                     @error('anotaciones_anteriores')
                         <p class="message">{{ $message }}</p>
                     @enderror

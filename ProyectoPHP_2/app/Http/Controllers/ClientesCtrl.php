@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Paises;
 use App\Rules\CIFValidation;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ClientesCtrl extends Controller
 {
     /**
@@ -19,9 +21,31 @@ class ClientesCtrl extends Controller
             $paisesMod = new Paises;
             $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);
             $cliente['pais_iso2'] = $paisesMod->where('nombre', $cliente['pais_id'])->value('iso2');
+            
         }
         return view('clientes.index', compact('clientes'));
     }
+
+    public function search(Request $request)
+    {
+
+        $clientes = Clientes::where('nombre','like',"%{$request->search}%")->paginate(5);
+
+       
+        if(isEmpty($clientes)){
+            $clientes = Clientes::paginate(5);
+        }
+
+        foreach ($clientes as $cliente) {
+            $paisesMod = new Paises;
+            $cliente['pais_id'] = $paisesMod->getNombrePais($cliente['pais_id']);
+            $cliente['pais_iso2'] = strtolower($paisesMod->where('nombre', $cliente['pais_id'])->value('iso2'));
+        }
+
+        return view('clientes.index', compact('clientes'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +55,7 @@ class ClientesCtrl extends Controller
         $paisesMod = new Paises;
         $paises = $paisesMod->getPaises();
 
-        return view('clientes.create', compact('paises'));
+        return view('clientes.create', compact('paises'))->with('success', 'Cliente añadido correctamente');
     }
 
     /**
@@ -62,7 +86,7 @@ class ClientesCtrl extends Controller
         // Guardar el cliente en la base de datos
         $cliente->save();
 
-        
+
         return redirect()->route('clientes.index')->with('success', 'Cliente añadido correctamente');
     }
 
@@ -103,27 +127,28 @@ class ClientesCtrl extends Controller
         ]);
 
         // Si la validación pasa, actualizar cliente
-        $cliente-> cif = $request->input('cif');
-        $cliente-> nombre = $request->input('nombre');
-        $cliente-> telefono = $request->input('telefono');
-        $cliente-> correo = $request->input('correo');
-        $cliente-> cuenta_corriente = $request->input('cuenta_corriente');
-        $cliente-> importe_mensual = $request->input('importe_mensual');
-        $cliente-> pais_id = $request->input('pais');
+        $cliente->cif = $request->input('cif');
+        $cliente->nombre = $request->input('nombre');
+        $cliente->telefono = $request->input('telefono');
+        $cliente->correo = $request->input('correo');
+        $cliente->cuenta_corriente = $request->input('cuenta_corriente');
+        $cliente->importe_mensual = $request->input('importe_mensual');
+        $cliente->pais_id = $request->input('pais');
 
 
         // Actualizar el cliente en la base de datos
         $cliente->save();
 
         return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clientes $clientes)
+    public function destroy(Clientes $cliente)
     {
         //
+        $cliente->delete();
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado');
     }
 }

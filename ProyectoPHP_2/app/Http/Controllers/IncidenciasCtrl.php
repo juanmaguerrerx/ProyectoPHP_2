@@ -7,8 +7,11 @@ use App\Models\Incidencias;
 use Illuminate\Http\Request;
 use App\Models\TblProvincias;
 use App\Models\Clientes;
+use App\Models\Paises;
 use App\Models\User;
 use App\Rules\ProvinciaValidation;
+use function PHPUnit\Framework\isEmpty;
+
 
 class IncidenciasCtrl extends Controller
 {
@@ -33,6 +36,27 @@ class IncidenciasCtrl extends Controller
         }
         return view('incidencias.index', compact('incidencias'));
     }
+
+    public function search(Request $request)
+    {
+
+        $incidencias = Clientes::where('cif','like',"%{$request->search}%")->paginate(5);
+
+       
+        if(isEmpty($incidencias)){
+            $incidencias = Incidencias::paginate(5);
+        }
+
+        foreach ($incidencias as $incidencia) {
+            $empleados = new Empleados;
+            $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
+            $provincias = new TblProvincias;
+            $incidencia['provincia'] = $provincias->getProvincia($incidencia['provincia']);
+        }
+
+        return view('incidencias.index', compact('incidencias'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -97,23 +121,26 @@ class IncidenciasCtrl extends Controller
     {
         // dd($incidencia);
 
+
         $empleados = new Empleados;
         $incidencia['dni_empleado'] = $empleados->getEmpleado($incidencia['dni_empleado']);
         $provincias = new TblProvincias;
         $incidenia['provincia'] = $provincias->getProvincia($incidencia['id']);
         $clientes = new Clientes;
+
         $incidencia['persona_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->nombre;
         $incidencia['correo'] = $clientes->getCliente($incidencia['cif_cliente'])->correo;
         $incidencia['telefono_contacto'] = $clientes->getCliente($incidencia['cif_cliente'])->telefono;
+        // dd($incidencia['fichero_resumen']);
         return view('incidencias.show', compact('incidencia'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Incidencias $incidencia)
+    public function edit(Request $request, Incidencias $incidencia)
     {
-        //
+        $empleado = new Empleados;
         $provincias = new TblProvincias;
         $provincias = $provincias->all();
         $empleados = new Empleados;
@@ -121,7 +148,16 @@ class IncidenciasCtrl extends Controller
         $clientes = new Clientes;
         $clientes = $clientes->all();
 
-        return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados', 'clientes'));
+        if (!$request->user()->isAdmin()) {
+            if ($empleado->where('dni', $incidencia->dni_empleado)->value('correo') == $request->user()->email) {
+                return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados', 'clientes'));
+            } else {
+                return redirect()->route('incidencias.index');
+            }
+        }else{
+            return view('incidencias.edit', compact('incidencia', 'provincias', 'empleados', 'clientes'));
+        }
+        
     }
 
     /**
@@ -129,8 +165,29 @@ class IncidenciasCtrl extends Controller
      */
     public function update(Request $request, Incidencias $incidencia)
     {
+        $incidencia = Incidencias::where('id', $incidencia->id)->first();
+        if (!$request->user()->isAdmin()) {
 
-        // dd($request);
+            $request->validate([
+                "estado" => "required",
+                "fecha_realizacion" => "nullable|date|after_or_equal:" . $incidencia->fecha_creacion,
+                'fichero_resumen' => 'nullable|max:4096',
+                "anotaciones_posteriores" => "required"
+            ]);
+
+            if ($request->estado == 'P') {
+                $fecha = null;
+            } else $fecha = $request->fecha_realizacion;
+
+            $incidencia->estado = $request->estado;
+            $incidencia->fecha_realizacion = $fecha;
+            $incidencia->fichero_resumen = $request->fichero_resumen;
+            $incidencia->anotaciones_posteriores = $request->anotaciones_posteriores;
+
+            $incidencia->save();
+
+            return redirect()->route('incidencias.index')->with('success', 'Incidencia modificada');
+        }
 
         $request->validate([
             "descripcion" => "required",
@@ -149,6 +206,8 @@ class IncidenciasCtrl extends Controller
         if ($request->estado == 'P') {
             $fecha = null;
         } else $fecha = $request->fecha_realizacion;
+
+
 
         $incidencia->cif_cliente = $request->cif_cliente;
         $incidencia->descripcion = $request->descripcion;

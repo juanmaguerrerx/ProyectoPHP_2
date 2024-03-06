@@ -13,6 +13,14 @@
 @endif
 
 @section('content')
+    @if (auth()->user()->isAdmin())
+        <form action="{{ route('incidencias.search') }}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" name="search" class="buscador" placeholder="Buscar...">
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+        </form>
+    @endif
     @extends('../tabla')
     @section('nombre_tabla') Incidencias @endsection
 @section('thead')
@@ -84,9 +92,15 @@
             <td>{{ $incidencia['descripcion'] }}</td>
             <td>{{ $incidencia['provincia'] }}</td>
             <td>{{ $incidencia['dni_empleado'] }}</td>
-            <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i class="{{ $icon }}"></i></span></td>
-            <td>{{ $incidencia['fecha_creacion'] }}</td>
-            <td>{{ $fecha }}</td>
+            <td><span class="{{ $incidencia['estado'] }}">{{ $estado }} <i class="{{ $icon }}"></i></span>
+            </td>
+            <td>{{ \Carbon\Carbon::parse($incidencia['fecha_creacion'])->format('d-m-Y') }}</td>
+            <td>
+                @if ($fecha == '~' || $fecha == null)
+                    {{ $fecha }}
+                @else {{ \Carbon\Carbon::parse($fecha)->format('d-m-Y') }}
+                @endif
+            </td>
             <td style="width: 150px">
                 <abbr title="Editar">
                     <a href="{{ route('incidencias.edit', [$incidencia->id]) }}">
@@ -115,13 +129,15 @@
     </div>
 </div>
 
-<abbr title="Añadir">
-    <a href="{{ route('incidencias.create') }}">
-        <button class="btn btn-outline-secondary btn-lg ww fixed-button text-white border-white"><i
-                class="bi bi-plus"></i>
-        </button>
-    </a>
-</abbr>
+@if (auth()->user()->isAdmin())
+    <abbr title="Añadir">
+        <a href="{{ route('incidencias.create') }}">
+            <button class="btn btn-outline-secondary btn-lg ww fixed-button text-white border-white"><i
+                    class="bi bi-plus"></i>
+            </button>
+        </a>
+    </abbr>
+@endif
 
 <!-- Modal -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"

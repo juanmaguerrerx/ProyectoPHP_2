@@ -4,7 +4,6 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -24,13 +23,13 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <div class="block mt-4">
+        {{-- <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <form action="{{route('register')}}" method="post">
                     @csrf
                 <a href="{{route('register')}}">No tienes cuenta? Registrate</a></form>
             </label>
-        </div>
+        </div> --}}
 
         <!-- Remember Me -->
         <div class="block mt-4">
@@ -47,9 +46,10 @@
                 </a>
             @endif
 
-            <x-primary-button class="ms-3" type="submit">
+            <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button> 
         </div>
     </form>
+    <a href="{{route('register')}}">No tienes cuenta? Regístrate</a>
 </x-guest-layout>
