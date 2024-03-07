@@ -69,7 +69,8 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                        onclick="{{ $empleadoDel = $empleado }}"><i class="bi bi-trash"></i></button>
                 </abbr>
             </td>
         </tr>
@@ -107,7 +108,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+                <form action="{{ route('empleados.destroy', [$empleadoDel->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
@@ -118,7 +123,7 @@
         const confirmDeleteButton = document.getElementById('confirmDeleteButton');
 
         confirmDeleteButton.addEventListener('click', function() {
-            
+
         });
     });
 </script>

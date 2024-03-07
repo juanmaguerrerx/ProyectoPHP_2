@@ -36,6 +36,13 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $users = new User;
+        $users->email = $request->email;
+
+        if(!$users->isIn()){
+            return redirect()->route('register')->with('success','El correo no corresponde a ningún empleado');
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

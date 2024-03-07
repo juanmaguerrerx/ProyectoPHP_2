@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as AuthenticatableUser;
 use Illuminate\Notifications\Notifiable;
 
+use function PHPUnit\Framework\isEmpty;
+
 class User extends AuthenticatableUser implements Authenticatable
 {
     use HasFactory;
@@ -28,7 +30,7 @@ class User extends AuthenticatableUser implements Authenticatable
     public function isIn()
     {
         $empleados = new Empleados;
-        $empleado = $empleados::where('correo', $this->email)->get();
+        $empleado = $empleados::where('correo', $this->email)->first();
         if($empleado){
             return true;
         }else return false;

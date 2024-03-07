@@ -16,18 +16,20 @@ class MailableClass extends Mailable
     public $cuota;
     public $cliente;
     public $factura;
+    public $edit;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $cuota, $cliente, $factura = false)
+    public function __construct($subject, $cuota, $cliente, $factura = false, $edit = false)
     {
         $this->subject = $subject;
         $this->cuota = $cuota;
         $this->cliente = $cliente;
         $this->factura = $factura;
+        $this->edit = $edit;
     }
 
     /**
@@ -45,6 +47,14 @@ class MailableClass extends Mailable
                     'cuota' => $this->cuota
                 ]);
         } else {
+            if($this->edit = true){
+                return $this->subject($this->subject)
+                ->view('emails.edit')
+                ->with([
+                    'cliente' => $this->cliente,
+                    'cuota' => $this->cuota
+                ]);
+            }
             return $this->subject($this->subject)
                 ->view('emails.view') // Aquí puedes especificar la vista del correo electrónico
                 ->with([

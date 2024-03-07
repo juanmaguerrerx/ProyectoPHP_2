@@ -98,8 +98,9 @@
             <td>
                 @if ($fecha == '~' || $fecha == null)
                     {{ $fecha }}
-                @else {{ \Carbon\Carbon::parse($fecha)->format('d-m-Y') }}
-                @endif  
+                @else
+                    {{ \Carbon\Carbon::parse($fecha)->format('d-m-Y') }}
+                @endif
             </td>
             <td style="width: 150px">
                 <abbr title="Editar">
@@ -109,8 +110,8 @@
                 </abbr>
                 @if (auth()->user()->isAdmin())
                     <abbr title="Eliminar">
-                        <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#confirmDeleteModal"><i class="bi bi-trash"></i></button>
+                        <button class="btn btn-danger bb btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                            onclick="{{ $incidenciaDel = $incidencia }}"><i class="bi bi-trash"></i></button>
                     </abbr>
                 @endif
                 <abbr title="Ver">
@@ -139,27 +140,34 @@
     </abbr>
 @endif
 
-<!-- Modal -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content custom-modal">
-            <div class="modal-header text-danger">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-x-circle-fill" style="color: white"></i> <!-- Icono de cierre -->
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar esta cuota?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+
+@if (auth()->user()->isAdmin())
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content custom-modal">
+                <div class="modal-header text-danger">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                    <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x-circle-fill" style="color: white"></i> <!-- Icono de cierre -->
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar esta cuota?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('incidencias.destroy', [$incidenciaDel->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

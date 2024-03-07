@@ -147,8 +147,8 @@ class ClientesCtrl extends Controller
      */
     public function destroy(Clientes $cliente)
     {
-        //
         $cliente->delete();
+    
         return redirect()->route('clientes.index')->with('success', 'Cliente eliminado');
     }
 }

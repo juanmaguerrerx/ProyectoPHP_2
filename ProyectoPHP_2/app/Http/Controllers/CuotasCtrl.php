@@ -25,7 +25,7 @@ class CuotasCtrl extends Controller
     public function index()
     {
         $cuotas = Cuotas::paginate(5);
-        // dd($cuotas);
+
         return view('cuotas.index', ['cuotas' => $cuotas]);
     }
 
@@ -60,63 +60,20 @@ class CuotasCtrl extends Controller
         // Guardar el cliente en la bbdd
         $cuota->save();
 
+        $this->cambioMoneda($cuota); //Hacemos el cambio de moneda
         $this->sendCuotaCreatedEmail($cuota);
 
 
         return redirect()->route('cuotas.index')->with('success', 'Cuota creada con éxito');
     }
-    /**
-     * Envía un correo electrónico al cliente correspondiente cuando se crea una nueva cuota.
-     *
-     * @param Cuotas $cuota
-     * @return void
-     */
-    private function sendCuotaCreatedEmail(Cuotas $cuota)
-    {
-        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
-
-        // dd($cliente->correo);
-
-        // Verifica si el cliente tiene una dirección de correo electrónico
-        if ($cliente->correo) {
-            // Construye el asunto del correo electrónico
-            $subject = 'Nueva cuota creada';
-
-            // Envía el correo electrónico utilizando la clase MailableClass
-            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente));
-        }
-    }
 
     /**
-     * Envía un correo electrónico al cliente correspondiente con una factura cuando se paga una cuota.
+     * Funcion para realizar el cambio de moneda
      *
-     * @param Cuotas $cuota
+     * @param [Cuotas] $cuota
      * @return void
      */
-    private function sendCuotaPagadaEmail(Cuotas $cuota)
-    {
-        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
-
-        // dd($cliente->correo);
-
-        // Verifica si el cliente tiene una dirección de correo electrónico
-        if ($cliente->correo) {
-            // Construye el asunto del correo electrónico
-            $subject = 'Nueva factura';
-
-            // Envía el correo electrónico utilizando la clase MailableClass
-            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente, true));
-        }
-    }
-
-    /**
-     * Mostrar cuota (descargar pdf y enviar correo al cliente)
-     *
-     * @param Cuotas $cuota
-     * @return void
-     */
-    public function show(Cuotas $cuota)
-    {
+    public function cambioMoneda($cuota){
         $cliente = new Clientes();
         $cliente = $cliente->getCliente($cuota['cif_cliente']);
         $pais = new Paises();
@@ -133,12 +90,92 @@ class CuotasCtrl extends Controller
                 $cuota['importe'] = $moneda_convertida;
             } else {
                 // Manejar el error de la solicitud a la API de tipo de cambio
-                // Por ejemplo, puedes lanzar una excepción o manejarlo de otra manera
-                // Aquí simplemente redirigimos con un mensaje de error
+                // simplemente redirigimos con un mensaje de error
                 return redirect('/cuotas')->with('error', 'Error al obtener el tipo de cambio');
             }
         }
-        $this->sendCuotaPagadaEmail($cuota);
+    }
+
+    /**
+     * Envía un correo electrónico al cliente correspondiente cuando se crea una nueva cuota.
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    private function sendCuotaCreatedEmail(Cuotas $cuota)
+    {
+        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
+
+        // Verifica si el cliente tiene una dirección de correo electrónico
+        if ($cliente->correo) {
+            // Construye el asunto del correo electrónico
+            $subject = 'Nueva cuota creada';
+
+            // Envía el correo electrónico utilizando la clase MailableClass
+            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente));
+        }
+    }
+
+    /**
+     * Envía un correo electrónico al cliente correspondiente cuando se crea una nueva cuota.
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    private function sendCuotaModEmail(Cuotas $cuota)
+    {
+        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
+
+        $this->cambioMoneda($cuota); //Hacemos el cambio de moneda
+
+        // Verifica si el cliente tiene una dirección de correo electrónico
+        if ($cliente->correo) {
+            // Construye el asunto del correo electrónico
+            $subject = 'Cuota Modificada';
+
+            // Envía el correo electrónico utilizando la clase MailableClass
+            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente));
+        }
+    }
+
+    /**
+     * Envía un correo electrónico al cliente correspondiente con una factura cuando se paga una cuota.
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    private function sendCuotaPagadaEmail(Cuotas $cuota)
+    {
+        $cliente = Clientes::where('cif', $cuota->cif_cliente)->first();
+
+        $this->cambioMoneda($cuota); //Hacemos el cambio de moneda
+
+        // Verifica si el cliente tiene una dirección de correo electrónico
+        if ($cliente->correo) {
+            // Construye el asunto del correo electrónico
+            $subject = 'Nueva factura';
+
+            // Envía el correo electrónico utilizando la clase MailableClass
+            Mail::to($cliente->correo)->send(new MailableClass($subject, $cuota, $cliente, true));
+        }
+    }
+    
+
+    /**
+     * Mostrar cuota (descargar pdf y enviar correo al cliente)
+     *
+     * @param Cuotas $cuota
+     * @return void
+     */
+    public function show(Cuotas $cuota)
+    {
+        $cliente = new Clientes();
+        $cliente = $cliente->getCliente($cuota['cif_cliente']);
+        $pais = new Paises();
+        $pais = $pais->getPais($cliente['pais_id']);
+
+        $this->cambioMoneda($cuota); //Hacemos el cambio de moneda
+
         //Si está pagada que se descargue, sino, que vuelva a .index
         if ($cuota['pagada'] == 1) {
             $cuota['moneda']=$pais['iso_moneda'];
@@ -188,13 +225,15 @@ class CuotasCtrl extends Controller
 
         $pagada = 0;
         $fecha = $request->fecha_pago;
+        if($request->input('pagada')==null){
+            $pagada=0;
+        }
         if ($request->input('pagada') == 'on') {
             $pagada = 1;
             if ($fecha = null || $fecha == '0000-00-00' || $fecha == 0 || $fecha = false) {
                 $fecha = date('Y-m-d');
             } else $fecha = $request->fecha_pago;
         }
-
 
         // Si la validación pasa, actualizar cliente
         $cuota->cif_cliente = $request->cif_cliente;
@@ -205,8 +244,16 @@ class CuotasCtrl extends Controller
         $cuota->fecha_pago = $fecha;
         $cuota->notas = $request->notas;
 
-        // Actualizar el cliente en la base de datos
         $cuota->save();
+
+        if($cuota->pagada==1){
+            $this->sendCuotaPagadaEmail($cuota);
+        }else{
+            $this->sendCuotaModEmail($cuota);
+        }
+
+        // Actualizar el cliente en la base de datos
+
         return redirect()->route('cuotas.index')->with('success', 'Cuota actualizada correctamente.');
     }
 
@@ -217,5 +264,8 @@ class CuotasCtrl extends Controller
     public function destroy(Cuotas $cuota)
     {
         //
+        $cuota->delete();
+    
+        return redirect()->route('cuotas.index')->with('success', 'Cuota eliminada');
     }
 }

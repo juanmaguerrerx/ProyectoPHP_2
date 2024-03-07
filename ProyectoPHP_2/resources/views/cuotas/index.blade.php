@@ -65,8 +65,8 @@
                     </a>
                 </abbr>
                 <abbr title="Eliminar">
-                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
-                            class="bi bi-trash"></i></button>
+                    <button class="btn btn-danger bb" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                        onclick="{{ $cuotaDel = $cuota }}"><i class="bi bi-trash"></i></button>
                 </abbr>
                 @if ($cuota['pagada'] == 1)
                     <abbr title="Descargar">
@@ -109,7 +109,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
+                <form action="{{ route('cuotas.destroy', [$cuotaDel->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Eliminar</button>
             </div>
         </div>
     </div>

@@ -109,14 +109,17 @@ class EmpleadosCtrl extends Controller
         // Guardar el cliente en la base de datos
         $empleado->save();
 
-        return redirect()->route('empleados.index')->with('success', 'Cliente actualizado correctamente.');
+        return redirect()->route('empleados.index')->with('success', 'Empleado actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Empleados $empleados)
+    public function destroy(Empleados $empleado)
     {
         //
+        $empleado->delete();
+    
+        return redirect()->route('empleados.index')->with('success', 'Empleado eliminado');
     }
 }

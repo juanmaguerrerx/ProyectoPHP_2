@@ -69,7 +69,7 @@ class IncidenciasCtrl extends Controller
         $provincias = new TblProvincias;
         $provincias = $provincias->all();
         $empleados = new Empleados;
-        $empleados = $empleados->all();
+        $empleados = $empleados->where('admin',0)->get();
         $clientes = new Clientes;
         $clientes = $clientes->all();
         return view('incidencias.create', compact('provincias', 'empleados', 'clientes'));
@@ -158,7 +158,7 @@ class IncidenciasCtrl extends Controller
         $provincias = new TblProvincias;
         $provincias = $provincias->all();
         $empleados = new Empleados;
-        $empleados = $empleados->all();
+        $empleados = $empleados->where('admin',0)->get();
         $clientes = new Clientes;
         $clientes = $clientes->all();
 
@@ -247,5 +247,7 @@ class IncidenciasCtrl extends Controller
     public function destroy(Incidencias $incidencia)
     {
         //
+        $incidencia->delete();
+        return redirect()->route('incidencias.index')->with('success','Incidencia eliminada');
     }
 }
